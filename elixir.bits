@@ -15,7 +15,7 @@ set_env()
 {
   KEY=$1
   VAL=$2
-  echo "$KEY=$VAL" >> $HOME/.pam_environment && source $HOME/.pam_environment
+  echo "$KEY=$VAL" >> $HOME/.pam_environment
 }
 
 #-----------
@@ -25,11 +25,13 @@ set_env()
 locale-gen en_US.UTF-8
 set_env ERLANG_VERSION $ERLANG_VERSION
 set_env ELIXIR_VERSION $ELIXIR_VERSION
+source $HOME/.pam_environment
 
 set_env LC_ALL en_US.UTF-8
 set_env LANG en_US.UTF-8
 set_env LANGUAGE en_US.UTF-8
 set_env PATH "/opt/elixir/elixir-$ELIXIR_VERSION/bin:node_modules/.bin:$PATH"
+source $HOME/.pam_environment
 
 apt-get update
 apt-get install -y wget git build-essential
