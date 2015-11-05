@@ -27,7 +27,7 @@ inspect it and run it directly.
 
 ## elixir.bits ##
 
-Installs Erlang and Elixir on your system.  Available configurations include
+Installs Erlang and Elixir on your system.  Available configurations with defaults include
 
 ```bash
 ERLANG_VERSION=18.0-1
@@ -37,4 +37,26 @@ To install, run
 
 ```bash
 curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits | bash
+```
+
+## gitclone.bits ##
+
+Clone a git project.  Available configurations with defaults include
+
+```bash
+NAME=samplephp
+URL=https://github.com/capbash/samplephp
+
+INSTALL_DIR=/var/local/apps
+USER_EMAIL=server@localhost}
+USER_NAME=server
+GIT_REMOTE=origin
+BRANCH=master
+TAG=master
+```
+To install, run
+
+```bash
+curl -s https://raw.githubusercontent.com/capbash/bits/master/gitclone.bits| \
+  NAME=samplephp URL=https://github.com/capbash/samplephp TAG=v0.2 bash
 ```
