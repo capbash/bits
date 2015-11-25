@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+EMAIL=${EMAIL-you@example.com}
+USERNAME=${USERNAME-"Ben Dover"}
+EDITOR=${EDITOR-vi}
+PUSH=${PUSH-simple}
+
+#-----------
+# INSTALLER
+#-----------
+
+git config --global user.email "$EMAIL"
+git config --global user.name "$USERNAME"
+git config --global core.editor $EDITOR
+git config --global push.default $PUSH
