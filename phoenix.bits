@@ -25,6 +25,9 @@ set_env()
 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 source $HOME/.bash_aliases
 
+apt-get -f -y install
+apt-get install -y inotify-tools
+
 mix local.hex --force
 mix archive.install --force https://github.com/phoenixframework/phoenix/releases/download/v$PHOENIX_VERSION/phoenix_new-$PHOENIX_VERSION.ez
 
