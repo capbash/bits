@@ -39,6 +39,39 @@ To install, run
 curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits | bash
 ```
 
+## phoenix.bits ##
+
+Installs Erlang, Elixir, Node and Phoenix on your system.  Available configurations with defaults include
+
+```bash
+ERLANG_VERSION=18.0-1
+ELIXIR_VERSION=1.1.1
+PHOENIX_VERSION=1.0.3
+NODE_VERSION=4.2.2
+```
+To install, run
+
+```bash
+curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits | bash
+```
+
+## gitconfig.bits ##
+
+Configure a remote git to the desired settings.  Available configurations with defaults include
+
+```bash
+EMAIL=you@example.com
+USERNAME="Ben Dover"
+EDITOR=vi
+PUSH=simple
+```
+To install, run
+
+```bash
+curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits | \
+  EMAIL=yourname@example.com USERNAME=yourname bash
+```
+
 ## gitclone.bits ##
 
 Clone a git project.  Available configurations with defaults include
@@ -57,6 +90,6 @@ TAG=master
 To install, run
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/gitclone.bits| \
+curl -s https://raw.githubusercontent.com/capbash/bits/master/gitclone.bits | \
   NAME=samplephp URL=https://github.com/capbash/samplephp TAG=v0.2 bash
 ```

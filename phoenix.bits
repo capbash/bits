@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+ERLANG_VERSION=${ERLANG_VERSION-18.0-1}
+ELIXIR_VERSION=${ELIXIR_VERSION-1.1.1}
+PHOENIX_VERSION=${PHOENIX_VERSION-1.0.3}
+NODE_VERSION=${NODE_VERSION-4.2.2}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "$KEY=$VAL" >> $HOME/.pam_environment
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits | ERLANG_VERSION=$ERLANG_VERSION ELIXIR_VERSION=$ELIXIR_VERSION bash
+
+mix local.hex --force
+mix archive.install --force https://github.com/phoenixframework/phoenix/releases/download/v$PHOENIX_VERSION/phoenix_new-$PHOENIX_VERSION.ez
+
+mkdir -p /opt/node
+(cd /opt/node && \
+ wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz && \
+ tar zxf node-v$NODE_VERSION-linux-x64.tar.gz)
+
+set_env PATH "/opt/node/node-v$NODE_VERSION-linux-x64/bin:$PATH"
+source $HOME/.pam_environment
