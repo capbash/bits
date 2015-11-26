@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+POSTGRES_VERSION=${POSTGRES_VERSION-9.4}
+PGADMIN_VERSION=${PGADMIN_VERSION-3}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+apt-get update
+apt-get -f -y install
+apt-get install -y postgresql-$POSTGRES_VERSION pgadmin$PGADMIN_VERSION
+
+printf "%b" "# MAPNAME\tSYSTEM-USERNAME\tPG-USERNAME
+adminmap\tpostgres\tpostgres
+adminmap\troot\tpostgres
+" > /etc/postgresql/$POSTGRES_VERSION/main/pg_ident.conf
+
+sed -i 's|peer|peer\tmap=adminmap|g' /etc/postgresql/$POSTGRES_VERSION/main/pg_hba.conf
+
+set_env PGUSER postgres
+source $HOME/.bash_aliases
+
+/etc/init.d/postgresql restart

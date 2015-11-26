@@ -37,40 +37,6 @@ To install, run
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 ```
-
-## phoenix.bits ##
-
-Installs Erlang and Elixir (using elixir.gits), and then installs Phoenix and Node.  
-Available configurations with defaults include
-
-```bash
-PHOENIX_VERSION=1.0.3
-NODE_VERSION=4.2.2
-```
-To install, run
-
-```bash
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits)
-```
-
-## gitconfig.bits ##
-
-Configure a remote git to the desired settings.  Available configurations with defaults include
-
-```bash
-EMAIL=you@example.com
-USERNAME="Ben Dover"
-EDITOR=vi
-PUSH=simple
-```
-To install, run
-
-```bash
-EMAIL=yourname@example.com \
-  USERNAME=yourname \
-  bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits)
-```
-
 ## gitclone.bits ##
 
 Clone a git project.  Available configurations with defaults include
@@ -93,4 +59,54 @@ NAME=samplephp \
   URL=https://github.com/capbash/samplephp \
   TAG=v0.2 \
   bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitclone.bits)
+```
+
+
+## gitconfig.bits ##
+
+Configure a remote git to the desired settings.  Available configurations with defaults include
+
+```bash
+EMAIL=you@example.com
+USERNAME="Ben Dover"
+EDITOR=vi
+PUSH=simple
+```
+To install, run
+
+```bash
+EMAIL=yourname@example.com \
+  USERNAME=yourname \
+  bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits)
+```
+
+## phoenix.bits ##
+
+Installs Erlang and Elixir (using elixir.bits), and then
+Postgres (using postgres.bits), and then installs Phoenix and Node.  
+Available configurations with defaults include
+
+```bash
+PHOENIX_VERSION=1.0.3
+NODE_VERSION=4.2.2
+```
+To install, run
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits)
+```
+
+## postgres.bits ##
+
+Installs Postgres.
+Available configurations with defaults include
+
+```bash
+POSTGRES_VERSION=9.4
+PGADMIN_VERSION=3
+```
+To install, run
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/postgres.bits)
 ```
