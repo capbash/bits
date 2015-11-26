@@ -3,7 +3,7 @@ bit
 
 An opinionated view on installing software.
 
-A collection stand-alone bash scripts for provisionning a bare metal server.
+A collection of stand-alone bash scripts for provisioning a bare metal server.
 
 # How to Install A Bit #
 
@@ -87,6 +87,20 @@ Postgres (using postgres.bits), and then installs Phoenix and Node.
 Available configurations with defaults include
 
 ```bash
+# From elixir.bits
+ERLANG_VERSION=18.0-1
+ELIXIR_VERSION=1.1.1
+
+# From gitconfig.bits
+EMAIL=you@example.com
+USERNAME="Ben Dover"
+EDITOR=vi
+PUSH=simple
+
+# From postgres.bits
+POSTGRES_VERSION=9.4
+PGADMIN_VERSION=3
+
 PHOENIX_VERSION=1.0.3
 NODE_VERSION=4.2.2
 ```
@@ -94,6 +108,58 @@ To install, run
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits)
+```
+
+## phoenixapp.bits ##
+
+You must ensure that your remote machine has the proper access to the
+git server.  This could be done, by scp'ing a trusted public/private key
+that is authorized by your git server.
+
+For example,
+```bash
+scp $HOME/.ssh/id_rsa.pub <remote_server>:/root/.ssh/
+scp $HOME/.ssh/id_rsa <remote_server>:/root/.ssh/
+```
+
+Installs Erlang and Elixir (using elixir.bits), and then
+Postgres (using postgres.bits), and Phoenix and Node (using phoenix.bits).
+Then it will download a phoenix umbrella app where the phoenix web app
+should be located at ./apps/webapp.  If you want to configure your app
+differently, then just spin up a phoenix.bit and configure as you wish.
+
+Available configurations with defaults include
+
+```bash
+# From elixir.bits
+ERLANG_VERSION=18.0-1
+ELIXIR_VERSION=1.1.1
+
+# From gitconfig.bits
+EMAIL=you@example.com
+USERNAME="Ben Dover"
+EDITOR=vi
+PUSH=simple
+
+# From postgres.bits
+POSTGRES_VERSION=9.4
+PGADMIN_VERSION=3
+
+# From phoenix.bits
+PHOENIX_VERSION=1.0.3
+NODE_VERSION=4.2.2
+
+SRC_DIR=/src
+GIT_URL="git@bitbucket.org:capbash/samplephoenix.git"
+PROJECT_NAME="samplephoenix"
+```
+
+To install, run
+
+```bash
+GIT_URL=git@github.com:capbash/samplephoenix.git \
+  PROJECT_NAME=samplephoenix \
+  bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenixapp.bits)
 ```
 
 ## postgres.bits ##

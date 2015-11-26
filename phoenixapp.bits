@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+GIT_URL=${GIT_URL-"git@bitbucket.org:capbash/samplephoenix.git"}
+PROJECT_NAME=${PROJECT_NAME-"samplephoenix"}
+SRC_DIR=${SRC_DIR-/src}
+
+#-----------
+# INSTALLER
+#-----------
+
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits)
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits)
+source $HOME/.bash_aliases
+
+mkdir -p /src && cd /src && git clone $GIT_URL $PROJECT_NAME
+
+PHOENIX_APP="$SRC_DIR/$PROJECT_NAME/apps/webapp"
+
+if [[ -e $PHOENIX_APP ]]; then
+  (cd $PHOENIX_APP && \
+   source $HOME/.bash_aliases && \
+   mix deps.get --force && \
+   mix deps.compile --force && \
+   npm install && node node_modules/brunch/bin/brunch build &&
+   mix compile)
+fi
