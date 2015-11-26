@@ -10,14 +10,13 @@ A collection stand-alone bash scripts for provisionning a bare metal server.
 To install a bit with all default parameters, e.g. elixir.bits, run
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits | bash
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 ```
 
 To override defaults, run
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits | \
-  ELIXIR_VERSION=1.1.0 bash
+ELIXIR_VERSION=1.1.0 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 ```
 
 If you don't trust this project, please don't pipe into bash, and instead download the file,
@@ -36,23 +35,22 @@ ELIXIR_VERSION=1.1.1
 To install, run
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits | bash
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 ```
 
 ## phoenix.bits ##
 
-Installs Erlang, Elixir, Node and Phoenix on your system.  Available configurations with defaults include
+Installs Erlang and Elixir (using elixir.gits), and then installs Phoenix and Node.  
+Available configurations with defaults include
 
 ```bash
-ERLANG_VERSION=18.0-1
-ELIXIR_VERSION=1.1.1
 PHOENIX_VERSION=1.0.3
 NODE_VERSION=4.2.2
 ```
 To install, run
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits | bash
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits)
 ```
 
 ## gitconfig.bits ##
@@ -68,8 +66,9 @@ PUSH=simple
 To install, run
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits | \
-  EMAIL=yourname@example.com USERNAME=yourname bash
+EMAIL=yourname@example.com \
+  USERNAME=yourname bash \
+  bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits)
 ```
 
 ## gitclone.bits ##
@@ -90,6 +89,8 @@ TAG=master
 To install, run
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/gitclone.bits | \
-  NAME=samplephp URL=https://github.com/capbash/samplephp TAG=v0.2 bash
+NAME=samplephp \
+  URL=https://github.com/capbash/samplephp \
+  TAG=v0.2 \
+  bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitclone.bits)
 ```
