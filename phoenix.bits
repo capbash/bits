@@ -15,7 +15,7 @@ set_env()
 {
   KEY=$1
   VAL=$2
-  echo "export $KEY=$VAL" >> $HOME/.pam_environment
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
 }
 
 #-----------
@@ -23,7 +23,7 @@ set_env()
 #-----------
 
 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
-source $HOME/.pam_environment
+source $HOME/.bash_aliases
 
 mix local.hex --force
 mix archive.install --force https://github.com/phoenixframework/phoenix/releases/download/v$PHOENIX_VERSION/phoenix_new-$PHOENIX_VERSION.ez
@@ -34,4 +34,4 @@ mkdir -p /opt/node
  tar zxf node-v$NODE_VERSION-linux-x64.tar.gz)
 
 set_env PATH "/opt/node/node-v$NODE_VERSION-linux-x64/bin:\$PATH"
-source $HOME/.pam_environment
+source $HOME/.bash_aliases
