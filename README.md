@@ -67,7 +67,7 @@ To install, run
 
 ```bash
 EMAIL=yourname@example.com \
-  USERNAME=yourname bash \
+  USERNAME=yourname \
   bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits)
 ```
 
