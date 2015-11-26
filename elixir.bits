@@ -33,6 +33,8 @@ set_env LANGUAGE en_US.UTF-8
 set_env PATH "/opt/elixir/elixir-$ELIXIR_VERSION/bin:node_modules/.bin:\$PATH"
 source $HOME/.bash_aliases
 
+printf "%b" "StrictHostKeyChecking no" > $HOME/.ssh/config
+
 apt-get update
 apt-get install -y wget git build-essential
 wget http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_general/esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
