@@ -20,11 +20,12 @@ mkdir -p $SRC_DIR && cd $SRC_DIR && git clone $GIT_URL $PROJECT_NAME
 
 UMBRELLA_APP="$SRC_DIR/$PROJECT_NAME"
 
-if [[ -e $UMBRELLA_APP ]]; then
-  (cd $UMBRELLA_APP && \
-   source $HOME/.bash_aliases && \
-   mix deps.get --force && \
-   mix deps.compile --force && \
-   npm install && node node_modules/brunch/bin/brunch build &&
-   mix compile)
+(cd $UMBRELLA_APP && \
+ mix deps.get && \
+ mix deps.compile --force && \
+ mix compile)
+
+PHOENIX_APP="$UMBRELLA_APP/apps/webapp"
+if [[ -e $PHOENIX_APP ]]; then
+  (cd $PHOENIX_APP && npm install && node node_modules/brunch/bin/brunch build)
 fi
