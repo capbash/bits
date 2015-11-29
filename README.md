@@ -26,7 +26,8 @@ inspect it and run it directly.
 
 ## elixir.bits ##
 
-Installs Erlang and Elixir on your system.  Available configurations with defaults include
+Installs (Erlang)[http://www.erlang.org/] and (Elixir)[http://elixir-lang.org/] on your system.  
+Available configurations with defaults include
 
 ```bash
 ERLANG_VERSION=18.0-1
@@ -80,9 +81,22 @@ EMAIL=yourname@example.com \
   bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits)
 ```
 
+## libsass.bits ##
+
+Installs libsass and sassc (needed by [node-sass](https://github.com/sass/node-sass)
+and useful with (Phoenix)[http://www.phoenixframework.org/]).  A thank you to
+edouard-lopez for the (fix)[https://gist.github.com/edouard-lopez/503d40a5c1a49cf8ae87].
+
+To install, run
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/libsass.bits)
+```
+
 ## phoenix.bits ##
 
-Installs Erlang and Elixir (using elixir.bits), and then
+Installs (Erlang)[http://www.erlang.org/] and (Elixir)[http://elixir-lang.org/] (using elixir.bits),
+and then Libsass (using libsass.bits)
 Postgres (using postgres.bits), and then installs Phoenix and Node.  
 Available configurations with defaults include
 
@@ -122,7 +136,7 @@ scp $HOME/.ssh/id_rsa.pub <remote_server>:/root/.ssh/
 scp $HOME/.ssh/id_rsa <remote_server>:/root/.ssh/
 ```
 
-Installs Erlang and Elixir (using elixir.bits), and then
+Installs (Erlang)[http://www.erlang.org/] and (Elixir)[http://elixir-lang.org/] (using elixir.bits), and then
 Postgres (using postgres.bits), and Phoenix and Node (using phoenix.bits).
 Then it will download a phoenix umbrella app where the phoenix web app
 should be located at ./apps/webapp.  If you want to configure your app

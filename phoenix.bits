@@ -24,6 +24,7 @@ set_env()
 
 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/postgres.bits)
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/libsass.bits)
 source $HOME/.bash_aliases
 
 apt-get -f -y install

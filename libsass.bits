@@ -1,0 +1,20 @@
+#!/bin/bash
+# Thank you to https://gist.github.com/edouard-lopez/503d40a5c1a49cf8ae87
+apt-get install -y automake libtool
+
+# Fetch sources
+(cd /opt && git clone https://github.com/sass/libsass.git)
+(cd /opt && git clone https://github.com/sass/sassc.git libsass/sassc)
+
+(cd /opt/libsass && \
+ autoreconf --force --install)
+
+(cd /opt/libsass && \
+ autoreconf --force --install && \
+ ./configure \
+   --disable-tests \
+   --enable-shared \
+   --prefix=/usr)
+
+(cd /opt && make -C libsass -j5)
+(cd /opt && make -C libsass -j5 install)

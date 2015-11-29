@@ -27,5 +27,7 @@ UMBRELLA_APP="$SRC_DIR/$PROJECT_NAME"
 
 PHOENIX_APP="$UMBRELLA_APP/apps/webapp"
 if [[ -e $PHOENIX_APP ]]; then
-  (cd $PHOENIX_APP && npm install && node node_modules/brunch/bin/brunch build)
+  (cd $PHOENIX_APP && \
+   npm install && node node_modules/brunch/bin/brunch build && \
+   mix compile)
 fi
