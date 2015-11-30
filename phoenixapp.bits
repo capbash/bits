@@ -29,5 +29,6 @@ PHOENIX_APP="$UMBRELLA_APP/apps/webapp"
 if [[ -e $PHOENIX_APP ]]; then
   (cd $PHOENIX_APP && \
    npm install && node node_modules/brunch/bin/brunch build && \
+   npm rebuild node-sass && \
    mix compile)
 fi
