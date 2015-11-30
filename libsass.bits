@@ -18,3 +18,5 @@ apt-get install -y automake libtool
 
 (cd /opt && make -C libsass -j5)
 (cd /opt && make -C libsass -j5 install)
+
+touch /opt/libsass.bits

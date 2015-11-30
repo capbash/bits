@@ -22,9 +22,9 @@ set_env()
 # INSTALLER
 #-----------
 
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/postgres.bits)
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/libsass.bits)
+[ ! -e /opt/elixir.bits ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
+[ ! -e /opt/postgres.bits ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/postgres.bits)
+[ ! -e /opt/libsass.bits ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/libsass.bits)
 source $HOME/.bash_aliases
 
 apt-get -f -y install
@@ -41,3 +41,5 @@ mkdir -p /opt/node
 
 set_env PATH "/opt/node/node-v$NODE_VERSION-linux-x64/bin:\$PATH"
 source $HOME/.bash_aliases
+
+touch /opt/phoenix.bits

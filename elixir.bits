@@ -45,3 +45,5 @@ wget https://github.com/elixir-lang/elixir/archive/v$ELIXIR_VERSION.tar.gz
 tar zxf v$ELIXIR_VERSION.tar.gz
 cd /opt/elixir/elixir-$ELIXIR_VERSION
 make install
+
+touch /opt/elixir.bits

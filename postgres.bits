@@ -40,3 +40,5 @@ set_env PGUSER postgres
 source $HOME/.bash_aliases
 
 /etc/init.d/postgresql restart
+
+touch /opt/postgres.bits
