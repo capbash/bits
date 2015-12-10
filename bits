@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.1.1
+VERSION=v0.1.2
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -381,7 +381,7 @@ cli()
 
   "help")
     shift
-    do_help
+    do_help $@
     ;;
 
   "update-self")
