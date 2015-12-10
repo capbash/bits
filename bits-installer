@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+bits_parse_params()
+{
+  while
+    (( $# > 0 ))
+  do
+    token="$1"
+    shift
+    case "$token" in
+
+      (--path)
+        if [[ -n "${1:-}" ]]
+        then
+          bits_path="$1"
+          shift
+        else
+          fail "--path must be followed by a path, e.g. /usr/local/bin."
+        fi
+        ;;
+
+      (--bits)
+        if [[ -n "${1:-}" ]]
+        then
+          bits_filename="$1"
+          shift
+        else
+          fail "--bits must be followed by a filename, e.g. /usr/local/bin/bits"
+        fi
+        ;;
+
+
+    esac
+  done
+
+  bits_path=${bits_path-/usr/local/bin}
+  bits_filename=${bits_filename-${bits_path}/bits}
+}
+
+do_install()
+{
+  bits_parse_params "$@"
+  echo "Installing bits into \"$bits_filename\""
+  curl -s -o "$bits_filename" https://raw.githubusercontent.com/capbash/bits/master/bits
+  chmod 755 "${bits_filename}"
+  echo "Done, to uninstall 'rm \"${bits_filename}\"'."
+}
+
+do_install "$@"

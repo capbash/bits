@@ -5,7 +5,31 @@ An opinionated view on installing software.
 
 A collection of stand-alone bash scripts for provisioning a bare metal server.
 
-# How to Install A Bit #
+# How to Install BITS CLI #
+
+To install from scratch, run
+
+```bash
+curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer | bash
+```
+
+This will install capbash into /usr/local/bin/bits.  To install it somewhere else, for example:
+
+```bash
+curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer | bash -s -- --path ~/.bin
+```
+
+If you don't trust this project, please don't pipe into bash, and instead download the file,
+inspect it and run it directly.
+
+If you already have bits and want to upgrade to the altest, please run
+
+```
+bits update-self
+```
+
+
+# How to Install A Bit Directly #
 
 To install a bit with all default parameters, e.g. elixir.bits, run
 
@@ -26,7 +50,7 @@ inspect it and run it directly.
 
 ## elixir.bits ##
 
-Installs (Erlang)[http://www.erlang.org/] and (Elixir)[http://elixir-lang.org/] on your system.  
+Installs (Erlang)[http://www.erlang.org/] and (Elixir)[http://elixir-lang.org/] on your system.
 Available configurations with defaults include
 
 ```bash
@@ -97,7 +121,7 @@ bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/libsass.bit
 
 Installs (Erlang)[http://www.erlang.org/] and (Elixir)[http://elixir-lang.org/] (using elixir.bits),
 and then Libsass (using libsass.bits)
-Postgres (using postgres.bits), and then installs Phoenix and Node.  
+Postgres (using postgres.bits), and then installs Phoenix and Node.
 Available configurations with defaults include
 
 ```bash
