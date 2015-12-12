@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Doing something great"
+echo "But, then I got a little wreckless.... and"
 
 # A simple bit to test the exception handling mechanism of bits
 i_dont_work
