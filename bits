@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.2.0
+VERSION=v0.3.0
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -372,14 +372,17 @@ cli()
     ;;
 
   "install")
+    shift
     do_install
     ;;
 
   "install-if")
+    shift
     do_install_if
     ;;
 
   "installed?")
+    shift
     do_installed_qmark
     ;;
 
