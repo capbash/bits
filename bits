@@ -98,8 +98,11 @@ handle_error()
   local LOGFILE=${LOGFILE-/tmp/bits.log}
   if [ $RETURN_CODE -ne 0 ] ; then
     error "$TITLE"
-    error "$ANSWER"
+    if [[ "$ANSWER" != "" ]]; then
+      error "$ANSWER"
+    fi
     error_all $LOGFILE
+    error ""
     exit 1
   fi
 }
