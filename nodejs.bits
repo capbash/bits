@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+NODE_VERSION=${NODE_VERSION-4.2.2}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+mkdir -p /opt/node
+(cd /opt/node && \
+ wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz && \
+ tar zxf node-v$NODE_VERSION-linux-x64.tar.gz)
+
+set_env PATH "/opt/node/node-v$NODE_VERSION-linux-x64/bin:\$PATH"
+source $HOME/.bash_aliases
+
+touch /opt/nodejs.bits
