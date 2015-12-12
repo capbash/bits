@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.3.0
+VERSION=v0.4.1
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -358,6 +358,24 @@ do_installed_qmark()
 
 }
 
+do_replace_self()
+{
+  current_bits_filename=$(which bits)
+  CURLOPT_FRESH_CONNECT=true curl -s -o $current_bits_filename https://raw.githubusercontent.com/capbash/bits/master/bits
+}
+
+do_update_self()
+{
+  current_bits_filename=$(which bits)
+  tmp_bits_filename=$current_bits_filename.old
+  cp $current_bits_filename $tmp_bits_filename
+  OLD_VERSION=$(internal_version $current_bits_filename)
+  info "Updating from $OLD_VERSION to latest version of bits in ${current_bits_filename}"
+  debug "The old version will be stored at $tmp_bits_filename"
+  info "When done run '${BLUE}bits version${NC}' for the new version."
+  exec $tmp_bits_filename replace-self
+}
+
 #--------------------
 # COMMAND LINE PARSER
 #--------------------
@@ -391,12 +409,12 @@ cli()
     do_help $@
     ;;
 
+  "replace-self")
+    do_replace_self
+    ;;
+
   "update-self")
-    current_bits_filename=$(which bits)
-    OLD_VERSION=$(internal_version $current_bits_filename)
-    info "Updating from $OLD_VERSION to latest version of bits in ${current_bits_filename}"
-    info "When done run '${BLUE}bits version${NC}' for the new version."
-    CURLOPT_FRESH_CONNECT=true curl -s -o $current_bits_filename https://raw.githubusercontent.com/capbash/bits/master/bits
+    do_update_self
     ;;
 
   "init")
