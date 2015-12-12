@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+PHOENIX_PATH=${PHOENIX_PATH-"/src/samplephoenix"}
+PORT=${PORT-4001}
+HOST=${HOST-localhost}
+
+#-----------
+# INSTALLER
+#-----------
+
+source $HOME/.bash_aliases
+
+(cd $PHOENIX_PATH && \
+ git pull && \
+ MIX_ENV=prod mix deps.get && \
+ MIX_ENV=prod mix compile && \
+ MIX_ENV=prod brunch build --production && \
+ MIX_ENV=prod mix phoenix.digest && \
+ MIX_ENV=prod PORT=$PORT HOST=$HOST nohup mix phoenix.server &)
