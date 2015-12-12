@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.4.1
+VERSION=v0.5.0
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -333,17 +333,20 @@ printf "%b" "# bits $VERSION
 do_install()
 {
   BIT=$1
-  info "Installing $BIT ..."
-  BITS_URL=${BITS_URL-$DEFAULT_BITS_URL}
-  debug "  ... Running bash <(curl -s $BITS_URL/$BIT.bits)"
-  bash <(curl -s $BITS_URL/$BIT.bits)
-  info "DONE, Installing $BITS"
+  if [[ "$BIT" == "" ]]; then
+    error "Please provide a bit to install, run ${LIGHT_GREEN}bits ls${NC} to see available bits."
+  else
+    info "Installing $BIT ..."
+    BITS_URL=${BITS_URL-$DEFAULT_BITS_URL}
+    debug "  ... Running bash <(curl -s $BITS_URL/$BIT.bits)"
+    bash <(curl -s $BITS_URL/$BIT.bits)
+    info "DONE, Installing $BITS"
+  fi
 }
 
 do_install_if()
 {
-  BIT=$1
-
+  do_install $@
 }
 
 do_installed_qmark()
@@ -391,17 +394,17 @@ cli()
 
   "install")
     shift
-    do_install
+    do_install $@
     ;;
 
   "install-if")
     shift
-    do_install_if
+    do_install_if $@
     ;;
 
   "installed?")
     shift
-    do_installed_qmark
+    do_installed_qmark $@
     ;;
 
   "help")
