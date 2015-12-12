@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.5.2
+VERSION=v0.5.3
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -348,7 +348,14 @@ do_install()
 
 do_install_if()
 {
-  do_install $@
+  BIT=$1
+  if [[ "$BIT" == "" ]]; then
+    error "Please provide a bit to install, run ${LIGHT_GREEN}bits ls${NC} to see available bits."
+  elif [[ "$(do_installed_qmark $BIT)" == "" ]]; then
+    do_install $@
+  else
+    debug "$BIT already installed, skipping."
+  fi
 }
 
 do_installed_qmark()
