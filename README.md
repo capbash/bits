@@ -10,13 +10,13 @@ A collection of stand-alone bash scripts for provisioning a bare metal server.
 To install from scratch, run
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer | bash
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
 ```
 
 This will install capbash into /usr/local/bin/bits.  To install it somewhere else, for example:
 
 ```bash
-curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer | bash -s -- --path ~/.bin
+bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer) --path /tmp
 ```
 
 If you don't trust this project, please don't pipe into bash, and instead download the file,
