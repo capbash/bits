@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.5.5
+VERSION=v0.5.7
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -342,7 +342,7 @@ do_install()
     info "Installing $BIT (tail -f $LOGFILE) ..."
     BITS_URL=${BITS_URL-$DEFAULT_BITS_URL}
     debug "  ... Running bash <(curl -s $BITS_URL/$BIT.bits)"
-    ANSWER=$(bash <(CURLOPT_FRESH_CONNECT=true curl -s $BITS_URL/$BIT.bits) &> $LOGFILE)
+    ANSWER=$(CURLOPT_FRESH_CONNECT=true bash <(curl -s $BITS_URL/$BIT.bits) &> $LOGFILE)
     handle_error $? "$ANSWER" "Unable to install $BIT"
     info "DONE, Installing $BITS"
   fi
@@ -387,7 +387,7 @@ do_update_self()
   info "Updating from $OLD_VERSION to latest version of bits in ${current_bits_filename}"
   debug "The old version will be stored at $tmp_bits_filename"
   info "When done run '${BLUE}bits version${NC}' for the new version."
-  exec $tmp_bits_filename replace-self
+  $tmp_bits_filename replace-self &
 }
 
 #--------------------
