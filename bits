@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.5.3
+VERSION=v0.5.4
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -97,9 +97,8 @@ handle_error()
   local TITLE="$3"
   local LOGFILE=${LOGFILE-/tmp/bits.log}
   if [ $RETURN_CODE -ne 0 ] ; then
-    error $TITLE
-    OUTPUT=$(process "$ANSWER")
-    error "$OUTPUT"
+    error "$TITLE"
+    error "$ANSWER"
     error_all $LOGFILE
     exit 1
   fi
@@ -340,7 +339,7 @@ do_install()
     info "Installing $BIT (tail -f $LOGFILE) ..."
     BITS_URL=${BITS_URL-$DEFAULT_BITS_URL}
     debug "  ... Running bash <(curl -s $BITS_URL/$BIT.bits)"
-    ANSWER=$(bash <(curl -s $BITS_URL/$BIT.bits) 2> $LOGFILE)
+    ANSWER=$(bash <(curl -s $BITS_URL/$BIT.bits) &> $LOGFILE)
     handle_error $? "$ANSWER" "Unable to install $BIT"
     info "DONE, Installing $BITS"
   fi
