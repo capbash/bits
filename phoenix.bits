@@ -5,7 +5,6 @@
 #-----------
 
 PHOENIX_VERSION=${PHOENIX_VERSION-1.0.3}
-NODE_VERSION=${NODE_VERSION-4.2.2}
 
 #-----------
 # HELPERS
@@ -22,9 +21,12 @@ set_env()
 # INSTALLER
 #-----------
 
-[ ! -e /opt/elixir.bits ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
-[ ! -e /opt/postgres.bits ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/postgres.bits)
-[ ! -e /opt/libsass.bits ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/libsass.bits)
+[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+
+bits install-if elixir
+bits install-if postgres
+bits install-if libsass
+bits install-if nodejs
 source $HOME/.bash_aliases
 
 apt-get -f -y install
@@ -33,13 +35,5 @@ apt-get install -y inotify-tools
 mix local.hex --force
 mix local.rebar --force
 mix archive.install --force https://github.com/phoenixframework/phoenix/releases/download/v$PHOENIX_VERSION/phoenix_new-$PHOENIX_VERSION.ez
-
-mkdir -p /opt/node
-(cd /opt/node && \
- wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz && \
- tar zxf node-v$NODE_VERSION-linux-x64.tar.gz)
-
-set_env PATH "/opt/node/node-v$NODE_VERSION-linux-x64/bin:\$PATH"
-source $HOME/.bash_aliases
 
 touch /opt/phoenix.bits
