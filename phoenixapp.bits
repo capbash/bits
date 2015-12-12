@@ -12,8 +12,10 @@ SRC_DIR=${SRC_DIR-/src}
 # INSTALLER
 #-----------
 
-[ ! -e /opt/phoenix.bits ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits)
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits)
+[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+
+bits install-if phoenix
+bits install gitconfig
 source $HOME/.bash_aliases
 
 mkdir -p $SRC_DIR && cd $SRC_DIR && git clone $GIT_URL $PROJECT_NAME
@@ -31,3 +33,5 @@ if [[ -e $PHOENIX_APP ]]; then
    npm install && \
    npm rebuild node-sass)
 fi
+
+touch /opt/phoenix.$PROJECT_NAME.bits
