@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.5.0
+VERSION=v0.5.1
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -336,10 +336,13 @@ do_install()
   if [[ "$BIT" == "" ]]; then
     error "Please provide a bit to install, run ${LIGHT_GREEN}bits ls${NC} to see available bits."
   else
+    local LOGFILE=${LOGFILE-/tmp/bits.log}
+
     info "Installing $BIT ..."
     BITS_URL=${BITS_URL-$DEFAULT_BITS_URL}
     debug "  ... Running bash <(curl -s $BITS_URL/$BIT.bits)"
-    bash <(curl -s $BITS_URL/$BIT.bits)
+    ANSWER=$(bash <(curl -s $BITS_URL/$BIT.bits) 2> $LOGFILE)
+    handle_error $? "$ANSWER" "Unable to install $BIT"
     info "DONE, Installing $BITS"
   fi
 }
