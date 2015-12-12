@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.1.3
+VERSION=v0.2.0
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
 TOUCH_DIR="/opt"
 
@@ -325,7 +325,7 @@ printf "%b" "# bits $VERSION
 # Where are your trusted bash bit scripts?
 # At the moment we only support URLs
 # File paths are coming
-# BITS_URL=${DEFAULT_URL}
+# BITS_URL=${DEFAULT_BITS_URL}
 " > ".bits"
   fi
 }
@@ -333,8 +333,11 @@ printf "%b" "# bits $VERSION
 do_install()
 {
   BIT=$1
-  BITS_URL=${BITS_URL-$DEFAULT_URL}
+  info "Installing $BIT ..."
+  BITS_URL=${BITS_URL-$DEFAULT_BITS_URL}
+  debug "  ... Running bash <(curl -s $BITS_URL/$BIT.bits)"
   bash <(curl -s $BITS_URL/$BIT.bits)
+  info "DONE, Installing $BITS"
 }
 
 do_install_if()
