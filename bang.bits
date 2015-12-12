@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+# A simple bit to test the exception handling mechanism of bits
+i_dont_work
