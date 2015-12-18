@@ -21,12 +21,25 @@ set_env()
 # INSTALLER
 #-----------
 
-mkdir -p /opt/node
-(cd /opt/node && \
- wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz && \
- tar zxf node-v$NODE_VERSION-linux-x64.tar.gz)
+if [[ "$NODE_VERSION" == "latest" ]]; then
 
-set_env PATH "/opt/node/node-v$NODE_VERSION-linux-x64/bin:\$PATH"
-source $HOME/.bash_aliases
+  (mkdir -p /opt/node/latest && \
+   cd /opt/node/latest && \
+   apt-get update && \
+   apt-get install -y g++ make && \
+   curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1 && \
+   ./configure && \
+   make && \
+   make install)
+
+else
+  (mkdir -p /opt/node && \
+   cd /opt/node && \
+   wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz && \
+   tar zxf node-v$NODE_VERSION-linux-x64.tar.gz)
+
+  set_env PATH "/opt/node/node-v$NODE_VERSION-linux-x64/bin:\$PATH"
+  source $HOME/.bash_aliases
+fi
 
 touch /opt/nodejs.bits
