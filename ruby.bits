@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+RUBY_VERSION=${RUBY_VERSION-2.2.3}
+
+#-----------
+# INSTALLER
+#-----------
+
+RUBYMM_VERSION=$(echo "$RUBY_VERSION" | sed "s/^\(.*\)\..*$/\1/")
+
+(mkdir -p /opt/ruby && \
+ cd /opt/ruby && \
+ apt-get update && \
+ apt-get install -y wget g++ build-essential && \
+ wget https://cache.ruby-lang.org/pub/ruby/${RUBYMM_VERSION}/ruby-${RUBY_VERSION}.tar.gz && \
+ tar zxf ruby-${RUBY_VERSION}.tar.gz && \
+ cd /opt/ruby/ruby-${RUBY_VERSION} && \
+ ./configure && \
+ make && \
+ make install)
+
+touch /opt/ruby.bits

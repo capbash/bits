@@ -28,16 +28,41 @@ If you already have bits and want to upgrade to the altest, please run
 bits update-self
 ```
 
+# How to Install a Bit #
+
+Once your bits installed (from above), you can install other bits by running
+
+```bash
+bits install <BIT_NAME>
+```
+
+For example,
+
+```bash
+bits install elixir
+```
+
+All available configurations are managed through environment variables.  If you wanted a different
+version of elixir, then you would run
+
+
+```bash
+ELIXIR_VERSION=1.1.0 bits install elixir
+```
+
 
 # How to Install A Bit Directly #
 
-To install a bit with all default parameters, e.g. elixir.bits, run
+If you don't like the idea of installing the "bits" command line tool, then you can install
+the bits directly using bash and curl.
+
+For example
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 ```
 
-To override defaults, run
+To override defaults, set it as an environment variable
 
 ```bash
 ELIXIR_VERSION=1.1.0 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
@@ -60,7 +85,7 @@ ELIXIR_VERSION=1.1.1
 To install, run
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
+bits install elixir
 ```
 ## gitclone.bits ##
 
@@ -83,7 +108,7 @@ To install, run
 NAME=samplephp \
   URL=https://github.com/capbash/samplephp \
   TAG=v0.2 \
-  bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitclone.bits)
+  bits install gitclone
 ```
 
 
@@ -102,7 +127,7 @@ To install, run
 ```bash
 EMAIL=yourname@example.com \
   USERNAME=yourname \
-  bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/gitconfig.bits)
+  bits install gitconfig
 ```
 
 ## libsass.bits ##
@@ -114,7 +139,7 @@ edouard-lopez for the (fix)[https://gist.github.com/edouard-lopez/503d40a5c1a49c
 To install, run
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/libsass.bits)
+bits install libsass
 ```
 
 ## phoenix.bits ##
@@ -145,7 +170,7 @@ NODE_VERSION=4.2.2
 To install, run
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenix.bits)
+bits install phoenix
 ```
 
 ## phoenixapp.bits ##
@@ -197,7 +222,7 @@ To install, run
 ```bash
 GIT_URL=git@github.com:capbash/samplephoenix.git \
   PROJECT_NAME=samplephoenix \
-  bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/phoenixapp.bits)
+  bits install phoenixapp
 ```
 
 ## postgres.bits ##
@@ -212,5 +237,19 @@ PGADMIN_VERSION=3
 To install, run
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/postgres.bits)
+bits install postgres
+```
+
+## ruby.bits ##
+
+Installs Ruby.
+Available configurations with defaults include
+
+```bash
+RUBY_VERSION=2.2.3
+```
+To install, run
+
+```bash
+bits install ruby
 ```
