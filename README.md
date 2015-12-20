@@ -142,6 +142,20 @@ To install, run
 bits install libsass
 ```
 
+## python.bits ##
+
+Installs Phython.
+Available configurations with defaults include
+
+```bash
+PYTHON_VERSION=2.7.5
+```
+To install, run
+
+```bash
+bits install python
+```
+
 ## phoenix.bits ##
 
 Installs (Erlang)[http://www.erlang.org/] and (Elixir)[http://elixir-lang.org/] (using elixir.bits),
