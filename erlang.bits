@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+ERLANG_VERSION=${ERLANG_VERSION-18.2-1}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+locale-gen en_US.UTF-8
+set_env ERLANG_VERSION $ERLANG_VERSION
+source $HOME/.bash_aliases
+
+apt-get update
+apt-get install -y wget git build-essential
+wget http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_general/esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
+dpkg --force-depends -i esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
+
+touch /opt/erlang.bits

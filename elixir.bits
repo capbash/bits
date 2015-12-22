@@ -22,8 +22,11 @@ set_env()
 # INSTALLER
 #-----------
 
+[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+
+bits install-if erlang
+
 locale-gen en_US.UTF-8
-set_env ERLANG_VERSION $ERLANG_VERSION
 set_env ELIXIR_VERSION $ELIXIR_VERSION
 source $HOME/.bash_aliases
 
@@ -34,11 +37,6 @@ set_env PATH "/opt/elixir/elixir-$ELIXIR_VERSION/bin:node_modules/.bin:\$PATH"
 source $HOME/.bash_aliases
 
 printf "%b" "StrictHostKeyChecking no" > $HOME/.ssh/config
-
-apt-get update
-apt-get install -y wget git build-essential
-wget http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_general/esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
-dpkg --force-depends -i esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
 
 mkdir -p /opt/elixir && cd /opt/elixir
 wget https://github.com/elixir-lang/elixir/archive/v$ELIXIR_VERSION.tar.gz
