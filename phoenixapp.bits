@@ -16,6 +16,7 @@ SRC_DIR=${SRC_DIR-/src}
 
 bits install-if phoenix
 bits install gitconfig
+source $HOME/.bash_aliases
 
 mkdir -p $SRC_DIR && cd $SRC_DIR && git clone $GIT_URL $PROJECT_NAME
 
