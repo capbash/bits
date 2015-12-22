@@ -24,7 +24,7 @@ inspect it and run it directly.
 
 If you already have bits and want to upgrade to the altest, please run
 
-```
+```bash
 bits update-self
 ```
 
@@ -49,7 +49,6 @@ version of elixir, then you would run
 ```bash
 ELIXIR_VERSION=1.1.0 bits install elixir
 ```
-
 
 # How to Install A Bit Directly #
 
@@ -111,7 +110,6 @@ NAME=samplephp \
   bits install gitclone
 ```
 
-
 ## gitconfig.bits ##
 
 Configure a remote git to the desired settings.  Available configurations with defaults include
@@ -128,6 +126,18 @@ To install, run
 EMAIL=yourname@example.com \
   USERNAME=yourname \
   bits install gitconfig
+```
+
+## jumpcloud.bits ##
+
+Configure a [JumpCloud](https://jumpcloud.com/) daemon on
+your server.
+
+To install, run
+
+```bash
+JUMPCLOUD_TOKEN=fill_me_in \
+  bits install jumpcloud
 ```
 
 ## libsass.bits ##
@@ -150,6 +160,7 @@ Available configurations with defaults include
 ```bash
 PYTHON_VERSION=2.7.5
 ```
+
 To install, run
 
 ```bash

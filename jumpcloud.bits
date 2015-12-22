@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+JUMPCLOUD_TOKEN=${JUMPCLOUD_TOKEN-FILL_ME_IN}
+
+#-----------
+# INSTALLER
+#-----------
+
+curl --silent --show-error --header 'x-connect-key: $JUMPCLOUD_TOKEN' https://kickstart.jumpcloud.com/Kickstart | sudo bash
+
+touch /opt/jumpcloud.bits
