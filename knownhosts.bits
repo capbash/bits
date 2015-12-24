@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#-----------
+# INSTALLER
+#-----------
+
+mkdir -p $HOME/.ssh
+printf "%b" "StrictHostKeyChecking no" > $HOME/.ssh/config

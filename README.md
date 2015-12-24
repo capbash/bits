@@ -157,6 +157,17 @@ JUMPCLOUD_TOKEN=fill_me_in \
   bits install jumpcloud
 ```
 
+## knownhosts.bits ##
+
+Configure your server to trust all hosts so that you can, for example,
+access services like GitHub and Bitbucket to download code.
+
+To install, run
+
+```bash
+bits install knownhosts
+```
+
 ## libsass.bits ##
 
 Installs libsass and sassc (needed by [node-sass](https://github.com/sass/node-sass)

@@ -14,8 +14,10 @@ SRC_DIR=${SRC_DIR-/src}
 
 [ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
 
+bits install-if knownhosts
 bits install-if phoenix
 bits install gitconfig
+
 source $HOME/.bash_aliases
 
 UMBRELLA_APP="$SRC_DIR/$PROJECT_NAME"

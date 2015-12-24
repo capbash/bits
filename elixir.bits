@@ -36,8 +36,6 @@ set_env LANGUAGE en_US.UTF-8
 set_env PATH "/opt/elixir/elixir-$ELIXIR_VERSION/bin:node_modules/.bin:\$PATH"
 source $HOME/.bash_aliases
 
-printf "%b" "StrictHostKeyChecking no" > $HOME/.ssh/config
-
 mkdir -p /opt/elixir && cd /opt/elixir
 wget https://github.com/elixir-lang/elixir/archive/v$ELIXIR_VERSION.tar.gz
 tar zxf v$ELIXIR_VERSION.tar.gz
