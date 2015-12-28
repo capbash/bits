@@ -180,6 +180,25 @@ To install, run
 bits install libsass
 ```
 
+## mysql.bits ##
+
+Installs [MySQL](https://www.mysql.com/). Available configurations with defaults include
+
+```bash
+MYSQL_VERSION=5.5.47
+```
+
+Available versions include
+
+* 5.5.47
+* 5.6.28
+* 5.7.10
+
+To install, run
+```
+bits install mysql
+```
+
 ## python.bits ##
 
 Installs Phython.

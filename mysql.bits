@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+# Known versions
+#   5.5.47
+#   5.6.28
+#   5.7.10
+
+MYSQL_VERSION=${MYSQL_VERSION-5.5.47}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+MYSQLMM_VERSION=$(echo "$MYSQL_VERSION" | sed "s/^\(.*\)\..*$/\1/")
+
+(mkdir -p /opt/mysql && \
+  cd /opt/mysql && \
+  wget http://dev.mysql.com/get/Downloads/MySQL-${MYSQLMM_VERSION}/mysql-${MYSQL_VERSION}-debian6.0-x86_64.deb
+  dpkg -i mysql-${MYSQL_VERSION}-debian6.0-x86_64.deb)
+
+set_env PATH "/opt/mysql/server-${MYSQLMM_VERSION}/bin:\$PATH"
+source $HOME/.bash_aliases
+
+touch /opt/mysql.bits
