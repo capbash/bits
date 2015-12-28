@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+REDIS_VERSION=${REDIS_VERSION-stable}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+RC=$(echo "$REDIS_VERSION" | sed "s/^.*-\(.*\)[0-9]\+$/\1/")
+
+if [[ "$RC" == "rc" || $REDIS_VERSION == "unstable" ]]; then
+  FILENAME=${REDIS_VERSION}.tar.gz
+  URL=https://github.com/antirez/redis/archive/${FILENAME}
+else
+  FILENAME=redis-${REDIS_VERSION}.tar.gz
+  URL=http://download.redis.io/releases/${FILENAME}
+fi
+
+(mkdir -p /opt/redis && \
+ cd /opt/redis && \
+ apt-get update && \
+ apt-get install -f -y && \
+ apt-get install -y wget g++ make && \
+ wget $URL
+ tar xvzf ${FILENAME}
+ cd redis-${REDIS_VERSION}
+ make)
+
+set_env PATH "/opt/redis/redis-${REDIS_VERSION}/src:\$PATH"
+source $HOME/.bash_aliases
+
+touch /opt/redis.bits
+
+
+
+
+

@@ -316,6 +316,21 @@ To install, run
 bits install postgres
 ```
 
+## redis.bits ##
+
+Installs [Redis](http://redis.io/).
+Available configurations with defaults include
+
+```bash
+REDIS_VERSION=stable
+```
+To install, run
+
+```bash
+bits install redis
+```
+
+
 ## ruby.bits ##
 
 Installs Ruby.
