@@ -36,6 +36,9 @@ set_env LANGUAGE en_US.UTF-8
 set_env PATH "/opt/elixir/elixir-$ELIXIR_VERSION/bin:node_modules/.bin:\$PATH"
 source $HOME/.bash_aliases
 
+apt-get -f -y install && \
+  apt-get install -y inotify-tools
+
 mkdir -p /opt/elixir && cd /opt/elixir
 wget https://github.com/elixir-lang/elixir/archive/v$ELIXIR_VERSION.tar.gz
 tar zxf v$ELIXIR_VERSION.tar.gz
