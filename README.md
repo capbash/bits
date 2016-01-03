@@ -81,7 +81,7 @@ Available configurations with defaults include
 # From erlang.bits
 ERLANG_VERSION=18.2-1
 
-ELIXIR_VERSION=1.1.1
+ELIXIR_VERSION=1.2.0
 ```
 To install, run
 
@@ -239,7 +239,7 @@ Available configurations with defaults include
 ERLANG_VERSION=18.2-1
 
 # From elixir.bits
-ELIXIR_VERSION=1.1.1
+ELIXIR_VERSION=1.2.0
 
 # From gitconfig.bits
 EMAIL=you@example.com
@@ -285,7 +285,7 @@ Available configurations with defaults include
 ERLANG_VERSION=18.2-1
 
 # From elixir.bits
-ELIXIR_VERSION=1.1.1
+ELIXIR_VERSION=1.2.0
 
 # From gitconfig.bits
 EMAIL=you@example.com
