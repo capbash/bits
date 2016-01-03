@@ -20,6 +20,7 @@ TAG=${TAG-$BRANCH}
 #-----------
 
 bits install-if git
+bits install-if knownhosts
 
 REPO_DIR=${INSTALL_DIR}/${NAME}
 
