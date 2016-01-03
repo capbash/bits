@@ -251,7 +251,7 @@ POSTGRES_VERSION=9.4
 PGADMIN_VERSION=3
 
 PHOENIX_VERSION=1.0.3
-NODE_VERSION=4.2.2
+NODE_VERSION=5.3.0
 ```
 To install, run
 
@@ -298,7 +298,7 @@ PGADMIN_VERSION=3
 
 # From phoenix.bits
 PHOENIX_VERSION=1.0.3
-NODE_VERSION=4.2.2
+NODE_VERSION=5.3.0
 
 SRC_DIR=/src
 GIT_URL="git@bitbucket.org:capbash/samplephoenix.git"
