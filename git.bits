@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+GIT_VERSION=${GIT_VERSION-latest} # e.g. latest or 2.6.4
+
+#-----------
+# INSTALLER
+#-----------
+
+if [[ "$GIT_VERSION" == "latest" ]]; then
+  apt-get update && apt-get install -y git
+else
+  (mkdir -p /opt/git && \
+   cd /opt/git && \
+   apt-get update && \
+   apt-get install -y wget build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip asciidoc && \
+   wget https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz && \
+   tar zxf v${GIT_VERSION}.tar.gz && \
+   cd git-${GIT_VERSION} && \
+   make prefix=/usr all && \
+   make prefix=/usr install)
+fi
+
+touch /opt/git.bits

@@ -13,6 +13,8 @@ PUSH=${PUSH-simple}
 # INSTALLER
 #-----------
 
+bits install-if git
+
 git config --global user.email "$EMAIL"
 git config --global user.name "$USERNAME"
 git config --global core.editor $EDITOR

@@ -19,6 +19,8 @@ TAG=${TAG-$BRANCH}
 # Install Script
 #-----------
 
+bits install-if git
+
 REPO_DIR=${INSTALL_DIR}/${NAME}
 
 if [[ "`which git 2> /dev/null`" == "" ]]; then

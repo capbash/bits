@@ -103,6 +103,19 @@ To install, run
 bits install erlang
 ```
 
+## git.bits ##
+
+Install git.
+
+```bash
+GIT_VERSION=latest
+```
+To install, run
+
+```bash
+bits install git
+```
+
 ## gitclone.bits ##
 
 Clone a git project.  Available configurations with defaults include
