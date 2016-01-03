@@ -125,7 +125,7 @@ NAME=samplephp
 URL=https://github.com/capbash/samplephp
 
 INSTALL_DIR=/var/local/apps
-USER_EMAIL=server@localhost}
+USER_EMAIL=server@localhost
 USER_NAME=server
 GIT_REMOTE=origin
 BRANCH=master
