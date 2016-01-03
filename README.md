@@ -230,8 +230,7 @@ bits install python
 ## phoenix.bits ##
 
 Installs [Erlang](http://www.erlang.org/) (using erlang.bits) and [Elixir](http://elixir-lang.org/) (using elixir.bits),
-and then Libsass (using libsass.bits)
-Postgres (using postgres.bits), and then installs Phoenix and Node.
+Libsass (using libsass.bits), Postgres (using postgres.bits), Node JS (using nodejs.bits) and then installs Phoenix.
 Available configurations with defaults include
 
 ```bash
@@ -273,7 +272,7 @@ scp $HOME/.ssh/id_rsa <remote_server>:/root/.ssh/
 ```
 
 Installs [Erlang](http://www.erlang.org/) (using erlang.bits) and [Elixir](http://elixir-lang.org/) (using elixir.bits), and then
-Postgres (using postgres.bits), and Phoenix and Node (using phoenix.bits).
+Postgres (using postgres.bits), and Node JS (using nodejs.bits) and Phoenix (using phoenix.bits).
 Then it will download a phoenix umbrella app where the phoenix web app
 should be located at ./apps/webapp.  If you want to configure your app
 differently, then just spin up a phoenix.bit and configure as you wish.
