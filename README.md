@@ -229,7 +229,7 @@ bits install python
 
 ## phoenix.bits ##
 
-Installs [Erlang]http://www.erlang.org/) and [Elixir](http://elixir-lang.org/) (using elixir.bits),
+Installs [Erlang](http://www.erlang.org/) and [Elixir](http://elixir-lang.org/) (using elixir.bits),
 and then Libsass (using libsass.bits)
 Postgres (using postgres.bits), and then installs Phoenix and Node.
 Available configurations with defaults include
