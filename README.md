@@ -158,6 +158,20 @@ EMAIL=yourname@example.com \
   bits install gitconfig
 ```
 
+## gitprompt.bits ##
+
+Configure your bash prompt to show important git branch information.  Once configured your prompt will look similar to:
+
+```bash
+11:35 /src/bits (master)$
+```
+
+To install, run
+
+```bash
+bits install gitprompt
+```
+
 ## jumpcloud.bits ##
 
 Configure a [JumpCloud](https://jumpcloud.com/) daemon on
