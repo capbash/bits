@@ -40,4 +40,11 @@ if [[ -e $PHOENIX_APP ]]; then
    npm rebuild node-sass)
 fi
 
+# Some bugs needs hacks
+# If you have a hack script, then call it after all the normal things have been done
+if [[ -e "$UMBRELLA_APP/bin/hack" ]]; then
+  (cd $UMBRELLA_APP && \
+   ./bin/hack)
+fi
+
 touch /opt/phoenix.$PROJECT_NAME.bits
