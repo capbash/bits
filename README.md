@@ -260,7 +260,7 @@ Installs Phython.
 Available configurations with defaults include
 
 ```bash
-PYTHON_VERSION=2.7.5
+PYTHON_VERSION=2.7.11
 ```
 
 To install, run
