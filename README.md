@@ -254,9 +254,25 @@ To install, run
 bits install mysql
 ```
 
+## pip.bits ##
+
+Installs Pip.
+Available configurations with defaults include
+
+```bash
+# From python.bits
+PYTHON_VERSION=2.7.11
+```
+
+To install, run
+
+```bash
+bits install pip
+```
+
 ## python.bits ##
 
-Installs Phython.
+Installs Python.
 Available configurations with defaults include
 
 ```bash

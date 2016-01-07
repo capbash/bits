@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#-----------
+# INSTALLER
+#-----------
+
+[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+
+bits install-if python
+
+(mkdir -p /opt/pip/latest && \
+ cd /opt/pip/latest && \
+ curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
+ python get-pip.py)
