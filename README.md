@@ -1,11 +1,11 @@
-bit
+bits
 ==============
 
 An opinionated view on installing software.
 
 A collection of stand-alone bash scripts for provisioning a bare metal server.
 
-# How to Install BITS CLI #
+# How to Install bits CLI #
 
 To install from scratch, run
 
@@ -206,6 +206,26 @@ To install, run
 ```bash
 bits install libsass
 ```
+
+## nginx.bits
+
+Install [Nginx](http://nginx.org/). Available configurations with defaults include
+
+```
+NGINX_VERSION=1.8.0
+NGINX_UPDATERC=true
+```
+
+If NGINX_UPDATERC is set to true, it will register itself with update-rc to automatically start when booting up the system.
+
+Once installed, you can see the availbale options by running
+
+```
+sudo service nginx
+```
+
+A huge thank you to [Jason Giedymin](https://github.com/JasonGiedymin/nginx-init-ubuntu) for the init.d script.
+
 
 ## mysql.bits ##
 
