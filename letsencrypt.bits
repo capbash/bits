@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+ELIXIR_VERSION=${ELIXIR_VERSION-1.2.0}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+
+bits install-if git
+
+(mkdir -p /opt/letsencrypt && \
+ cd /opt/letsencrypt && \
+ git clone https://github.com/letsencrypt/letsencrypt latest)
+
+set_env PATH "/opt/letsencrypt/latest:$PATH"
+source $HOME/.bash_aliases

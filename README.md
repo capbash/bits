@@ -195,6 +195,14 @@ To install, run
 bits install knownhosts
 ```
 
+## letsencrypt.bits
+
+Installs [Let's Encyrpt](https://letsencrypt.org/). To install, run
+
+```bash
+bits install letsencrypt
+```
+
 ## libsass.bits ##
 
 Installs libsass and sassc (needed by [node-sass](https://github.com/sass/node-sass)
