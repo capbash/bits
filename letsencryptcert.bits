@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+KEYSIZE=${KEYSIZE-4096}
+EMAIL=${EMAIL}
+DOMAINS=${DOMAINS}
+WEBROOT=${WEBROOT}
+INI=${INI-/opt/letsencrypt/conf/letsencrypt.ini}
+
+#-----------
+# INSTALLER
+#-----------
+
+[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+
+source bits install-if letsencrypt
+
+mkdir -p "$(dirname "$INI")"
+
+printf "%b" "
+rsa-key-size = $KEYSIZE
+email = $EMAIL
+domains = $DOMAINS
+text = True
+authenticator = webroot
+standalone-supported-challenges = tls-sni-01
+webroot-path = $WEBROOT
+
+" > ${INI}
+
+echo "A" | letsencrypt-auto certonly --config $INI
