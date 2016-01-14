@@ -288,8 +288,8 @@ bits install python
 ## phoenix.bits ##
 
 Installs [Erlang](http://www.erlang.org/) (using erlang.bits) and [Elixir](http://elixir-lang.org/) (using elixir.bits),
-Libsass (using libsass.bits), Postgres (using postgres.bits), Node JS (using nodejs.bits) and then installs Phoenix.
-Available configurations with defaults include
+Sass (using sass.bits), Libsass (through sass.bits), Ruby (through sass.bits), Postgres (using postgres.bits),
+Node JS (using nodejs.bits) and then installs Phoenix. Available configurations with defaults include
 
 ```bash
 # From erlang.bits
@@ -307,6 +307,9 @@ PUSH=simple
 # From postgres.bits
 POSTGRES_VERSION=9.4
 PGADMIN_VERSION=3
+
+# From ruby.bits (through sass.bits)
+RUBY_VERSION=2.2.3
 
 PHOENIX_VERSION=1.0.3
 NODE_VERSION=5.3.0
@@ -413,4 +416,21 @@ To install, run
 
 ```bash
 bits install ruby
+```
+
+## sass.bits ##
+
+Installs SASS.
+Available configurations with defaults include
+
+```bash
+RUBY_VERSION=2.2.3
+```
+To install, run
+
+```bash
+# From ruby.bits
+RUBY_VERSION=2.2.3
+
+bits install sass
 ```

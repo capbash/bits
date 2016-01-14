@@ -25,7 +25,7 @@ set_env()
 
 bits install-if elixir
 bits install-if postgres
-bits install-if libsass
+bits install-if sass
 bits install-if nodejs
 source $HOME/.bash_aliases
 

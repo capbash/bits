@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+#-----------
+# INSTALLER
+#-----------
+
+[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+
+bits install-if libsass
+bits install-if ruby
+source $HOME/.bash_aliases
+
+gem install sass
+
+touch /opt/sass.bits
