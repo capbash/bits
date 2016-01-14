@@ -20,30 +20,25 @@ bits install gitconfig
 
 source $HOME/.bash_aliases
 
-UMBRELLA_APP="$SRC_DIR/$PROJECT_NAME"
+APP_DIR="$SRC_DIR/$PROJECT_NAME"
 
-if [[ -e "$UMBRELLA_APP" ]]; then
-  rm -rf  "$UMBRELLA_APP"
+if [[ -e "$APP_DIR" ]]; then
+  rm -rf  "$APP_DIR"
 fi
 
 mkdir -p $SRC_DIR && cd $SRC_DIR && git clone $GIT_URL $PROJECT_NAME
 
-(cd $UMBRELLA_APP && \
+(cd $APP_DIR && \
  mix deps.get && \
  mix deps.compile --force && \
- mix compile)
-
-PHOENIX_APP="$UMBRELLA_APP/apps/webapp"
-if [[ -e $PHOENIX_APP ]]; then
-  (cd $PHOENIX_APP && \
-   npm install && \
-   npm rebuild node-sass)
-fi
+ mix compile && \
+ npm install && \
+ npm rebuild node-sass)
 
 # Some bugs needs hacks
 # If you have a hack script, then call it after all the normal things have been done
-if [[ -e "$UMBRELLA_APP/bin/hack" ]]; then
-  (cd $UMBRELLA_APP && \
+if [[ -e "$APP_DIR/bin/hack" ]]; then
+  (cd $APP_DIR && \
    ./bin/hack)
 fi
 
