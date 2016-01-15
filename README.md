@@ -363,6 +363,7 @@ NODE_VERSION=5.3.0
 
 SRC_DIR=/src
 GIT_URL="git@bitbucket.org:capbash/samplephoenix.git"
+GIT_BRANCH="master"
 PROJECT_NAME="samplephoenix"
 ```
 

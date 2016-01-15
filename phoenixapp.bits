@@ -5,6 +5,7 @@
 #-----------
 
 GIT_URL=${GIT_URL-"git@bitbucket.org:capbash/samplephoenix.git"}
+GIT_BRANCH=${GIT_BRANCH-master}
 PROJECT_NAME=${PROJECT_NAME-"samplephoenix"}
 SRC_DIR=${SRC_DIR-/src}
 
@@ -29,6 +30,7 @@ fi
 mkdir -p $SRC_DIR && cd $SRC_DIR && git clone $GIT_URL $PROJECT_NAME
 
 (cd $APP_DIR && \
+ git checkout $GIT_BRANCH && \
  mix deps.get && \
  mix deps.compile --force && \
  mix compile && \
