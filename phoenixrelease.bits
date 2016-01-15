@@ -5,8 +5,6 @@
 #-----------
 
 PHOENIX_PATH=${PHOENIX_PATH-"/src/samplephoenix"}
-PORT=${PORT-4001}
-HOST=${HOST-localhost}
 
 #-----------
 # INSTALLER
@@ -14,15 +12,11 @@ HOST=${HOST-localhost}
 
 source $HOME/.bash_aliases
 
-if [[ -e "$PHOENIX_PATH/bin/env" ]]; then
-  echo "Loading the environment from $PHOENIX_PATH/bin/env"
-  (cd $PHOENIX_PATH && source ./bin/env)
-fi
-
 (cd $PHOENIX_PATH && \
  git pull && \
- MIX_ENV=prod mix deps.get && \
- MIX_ENV=prod mix compile && \
- MIX_ENV=prod brunch build --production && \
- MIX_ENV=prod mix phoenix.digest && \
- MIX_ENV=prod PORT=$PORT HOST=$HOST nohup mix phoenix.server &)
+ source ./bin/env && \
+ mix deps.get && \
+ mix compile && \
+ brunch build --production && \
+ mix phoenix.digest && \
+ nohup mix phoenix.server &)
