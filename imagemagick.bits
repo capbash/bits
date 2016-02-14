@@ -30,7 +30,8 @@ apt-get -f -y install && \
   tar xzvf ImageMagick-${IMAGEMAGICK_VERSION}.tar.gz && \
   cd ImageMagick-${IMAGEMAGICK_VERSION}/ && \
   ./configure && \
-  make
+  make && \
+  ldconfig /usr/local/lib
 
 touch /opt/imagemagick.bits
 
