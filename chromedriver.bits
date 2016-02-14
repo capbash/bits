@@ -22,7 +22,12 @@ set_env()
 #-----------
 
 apt-get -f -y install && \
-  apt-get install -y unzip && \
+  apt-get install -y --force-yes unzip xvfb libxss1 libappindicator1 libindicator7 xdg-utils && \
+  mkdir -p /opt/chrome && \
+  cd /opt/chrome && \
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+  dpkg -i google-chrome*.deb && \
+  apt-get install -f && \
   mkdir -p /opt/chromedriver && \
   cd /opt/chromedriver && \
   wget -N http://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip && \
