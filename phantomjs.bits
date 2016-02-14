@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+PHANTOMJS_VERSION=${PHANTOMJS_VERSION-2.1.1}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+
+apt-get -f -y install && \
+  apt-get install -y wget && \
+  mkdir -p /opt/phantomjs && \
+  cd /opt/phantomjs && \
+  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2 && \
+  tar jxf phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2 && \
+  set_env PATH "/opt/phantomjs/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64/bin:\$PATH"
+
+source $HOME/.bash_aliases
+
+touch /opt/phantomjs.bits
+
+
+
+
