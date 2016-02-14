@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+CHROMEDRIVER_VERSION=${CHROMEDRIVER_VERSION-2.21}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+apt-get -f -y install && \
+  apt-get install -y unzip && \
+  mkdir -p /opt/chromedriver && \
+  cd /opt/chromedriver && \
+  wget -N http://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip && \
+  unzip chromedriver_linux64.zip && \
+  set_env PATH "/opt/chromedriver:\$PATH"
+
+source $HOME/.bash_aliases
+
+touch /opt/chromedriver.bits

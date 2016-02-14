@@ -72,6 +72,20 @@ inspect it and run it directly.
 
 # Available Bits #
 
+## chromedriver.bits ##
+
+Installs [Chrome Driver](https://sites.google.com/a/chromium.org/chromedriver/) on your system.
+Available configurations with defaults include
+
+```bash
+CHROMEDRIVER_VERSION=2.21
+```
+To install, run
+
+```bash
+bits install chromedriver
+```
+
 ## elixir.bits ##
 
 Installs [Elixir](http://elixir-lang.org), which also needs [Erlang](http://www.erlang.org/), on your system.
