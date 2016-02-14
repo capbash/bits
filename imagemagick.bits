@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION-6.9.3-4}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+apt-get -f -y install && \
+  apt-get install -y build-essential checkinstall && \
+  apt-get build-dep imagemagick -y && \
+  mkdir -p /opt/imagemagick && \
+  cd /opt/imagemagick && \
+  wget https://www.imagemagick.org/download/ImageMagick-${IMAGEMAGICK_VERSION}.tar.gz && \
+  tar xzvf ImageMagick-${IMAGEMAGICK_VERSION}.tar.gz && \
+  cd ImageMagick-${IMAGEMAGICK_VERSION}/ && \
+  ./configure && \
+  make
+
+touch /opt/imagemagick.bits
+
