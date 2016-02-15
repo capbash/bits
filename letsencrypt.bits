@@ -1,12 +1,6 @@
 #!/bin/bash
 
 #-----------
-# VARIABLES
-#-----------
-
-ELIXIR_VERSION=${ELIXIR_VERSION-1.2.0}
-
-#-----------
 # HELPERS
 #-----------
 
