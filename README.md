@@ -96,7 +96,8 @@ TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/docu
 
 
 ```bash
-NAME=devbox$TS
+PREFIX=devbox
+NAME=${PREFIX}${TS}
 IMAGE=ubuntu-14-04-x64
 SIZE=512mb
 SLEEP=60

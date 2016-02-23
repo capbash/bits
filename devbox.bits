@@ -5,7 +5,8 @@
 #-----------
 
 TS=$(date +%Y%m%d%H%M)
-NAME=${NAME-devbox$TS}
+PREFIX=${PREFIX-devbox}
+NAME=${NAME-${PREFIX}${TS}}
 IMAGE=${IMAGE-ubuntu-14-04-x64}
 SIZE=${SIZE-512mb}
 SLEEP=${SLEEP-60}
