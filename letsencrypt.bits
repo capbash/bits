@@ -23,5 +23,5 @@ bits install-if git
  cd /opt/letsencrypt && \
  git clone https://github.com/letsencrypt/letsencrypt latest)
 
-set_env PATH "/opt/letsencrypt/latest:$PATH"
+set_env PATH "/opt/letsencrypt/latest:\$PATH"
 source $HOME/.bash_aliases
