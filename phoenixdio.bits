@@ -1,0 +1,79 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+ELIXIR_VERSION=${ELIXIR_VERSION-1.2.2}
+PHOENIX_VERSION=${PHOENIX_VERSION-1.1.3}
+NAME=${NAME-elixir${ELIXIR_VERSION//./}phoenix${PHOENIX_VERSION//./}}
+LOGFILE=${LOGFILE-/tmp/$NAME.log}
+SIZE=${SIZE-512mb}
+SLEEP=${SLEEP-60}
+
+#-----------
+# INSTALLER
+#-----------
+
+START_TIME=`date +%s`
+
+runtime=$((end-start))
+TS=$(date +%Y%m%d%H%M)
+
+echo "---------------------------------------------------------------------"
+echo "-----           BASELINE                                      -------"
+echo "---------------------------------------------------------------------"
+echo "-----  NAME=$NAME"
+echo "-----  ELIXIR_VERSION=$ELIXIR_VERSION"
+echo "-----  PHOENIX_VERSION=$PHOENIX_VERSION"
+echo "-----  SIZE=$SIZE"
+echo "-----  SLEEP=$SLEEP"
+echo "-----  LOGFILE=$LOGFILE"
+echo "---------------------------------------------------------------------"
+echo ""
+
+echo "" > $LOGFILE
+ID=$(dio id $NAME)
+
+if [[ "$ID" == "" ]]; then
+  echo "About to create $NAME"
+  OUTPUT=$(SIZE=$SIZE dio create $NAME 2>> $LOGFILE)
+  ID=$(dio id $NAME)
+else
+  echo "Reusing $NAME"
+fi
+
+if [[ "$ID" == "" ]]; then
+  echo "?!?!?  Unable to locate droplet for $NAME, dumping logfile"
+  while read line; do
+    echo "    ===> $line"
+  done <$LOGFILE
+  exit 1
+fi
+
+echo "Waiting on $ID"
+dio block-until $ID active
+echo "Sleeping ${SLEEP}s for good measure"
+sleep $SLEEP
+
+IP=$(dio $ID ip)
+
+echo "Removing HostKey check for $IP"
+ssh -o "StrictHostKeyChecking no" root@$IP "uname -a"
+
+dio ssh $ID "bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)"
+dio ssh $ID "ELIXIR_VERSION=$ELIXIR_VERSION PHOENIX_VERSION=$PHOENIX_VERSION bits install-if phoenix"
+dio ssh $ID "bits install-if gitprompt"
+dio power off $ID
+dio block-until $ID off
+dio snapshot $ID $NAME
+dio block-until $ID active
+dio delete $ID
+
+END_TIME=`date +%s`
+RUN_TIME=$((END_TIME-START_TIME))
+echo ""
+echo "-----          TOOK $RUN_TIME seconds"
+echo "---------------------------------------------------------------------"
+echo "-----          DONE... YOU ARE WELCOME                        -------"
+echo "---------------------------------------------------------------------"

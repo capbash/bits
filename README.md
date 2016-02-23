@@ -389,6 +389,31 @@ GIT_URL=git@github.com:capbash/samplephoenix.git \
   bits install phoenixapp
 ```
 
+## phoenixdio.bits ##
+
+Creates a [Digital Ocean](https://www.digitalocean.com/) private image with everything to quickly
+spin up a phoenix ready development environment.  It does not expose all available configurations
+(e.g. which version of ERLANG, or NODE_JS), so if you need something more customizable, then please
+consider wrapping this functionality directly.
+
+This bit requires [Dio](https://github.com/capbash/dio) installed locally, with a valid
+TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/documentation/v2/).
+
+
+```bash
+ELIXIR_VERSION=1.2.2
+PHOENIX_VERSION=1.1.3
+NAME=elixir${ELIXIR_VERSION//./}phoenix${PHOENIX_VERSION//./}
+LOGFILE=/tmp/$NAME.log
+SIZE=512mb
+SLEEP=60
+```
+To install, run
+
+```bash
+bits install phoenixdio
+```
+
 ## postgres.bits ##
 
 Installs Postgres.
