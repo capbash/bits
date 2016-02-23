@@ -86,6 +86,29 @@ To install, run
 bits install chromedriver
 ```
 
+## devboxdio.bits ##
+
+Creates a [Digital Ocean](https://www.digitalocean.com/) droplet that is ready for
+development.  It will create the specified IMAGE of a specific SIZE.
+
+This bit requires [Dio](https://github.com/capbash/dio) installed locally, with a valid
+TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/documentation/v2/).
+
+
+```bash
+NAME=devbox$TS
+IMAGE=ubuntu-14-04-x64
+SIZE=512mb
+SLEEP=60
+LOGFILE=/tmp/devbox_$NAME.log
+```
+
+To install, run
+
+```bash
+bits install devboxdio
+```
+
 ## elixir.bits ##
 
 Installs [Elixir](http://elixir-lang.org), which also needs [Erlang](http://www.erlang.org/), on your system.
