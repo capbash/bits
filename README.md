@@ -493,8 +493,28 @@ RUBY_VERSION=2.2.3
 To install, run
 
 ```bash
-# From ruby.bits
-RUBY_VERSION=2.2.3
-
 bits install sass
 ```
+
+## snapshotdio.bits ##
+
+Creates a [Digital Ocean](https://www.digitalocean.com/) snapshot for re-use.
+
+This bit requires [Dio](https://github.com/capbash/dio) installed locally, with a valid
+TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/documentation/v2/).
+
+
+```bash
+ID=${ID}
+NAME=${NAME}
+DELETE=false
+```
+
+To create an image called `myapp` against a droplet 1234 (could also be it's name, if it is
+unique, then run
+
+```bash
+ID=1234 NAME=myapp bits install sass
+```
+
+If you have `DELETE=true`, then it will delete the snapshot when it's done.

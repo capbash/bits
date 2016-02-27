@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+ID=${ID}
+NAME=${NAME}
+DELETE=${DELETE-false}
+
+#-----------
+# INSTALLER
+#-----------
+
+dio power off $ID
+dio block-until $ID off
+dio snapshot $ID $NAME
+dio block-until $ID active
+
+if [[ "$DELETE" == "true" ]]; then
+  dio delete $ID
+fi
