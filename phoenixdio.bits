@@ -62,11 +62,7 @@ ssh -o "StrictHostKeyChecking no" root@$IP "uname -a"
 dio ssh $ID "bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)"
 dio ssh $ID "ELIXIR_VERSION=$ELIXIR_VERSION PHOENIX_VERSION=$PHOENIX_VERSION bits install-if phoenix"
 dio ssh $ID "bits install-if gitprompt"
-dio power off $ID
-dio block-until $ID off
-dio snapshot $ID $NAME
-dio block-until $ID active
-dio delete $ID
+ID=$ID NAME=$NAME bits install snapshotdio
 
 END_TIME=`date +%s`
 RUN_TIME=$((END_TIME-START_TIME))
