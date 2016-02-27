@@ -47,7 +47,7 @@ version of elixir, then you would run
 
 
 ```bash
-ELIXIR_VERSION=1.1.0 bits install elixir
+ELIXIR_VERSION=1.2.3 bits install elixir
 ```
 
 # How to Install A Bit Directly #
@@ -64,7 +64,7 @@ bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits
 To override defaults, set it as an environment variable
 
 ```bash
-ELIXIR_VERSION=1.1.0 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
+ELIXIR_VERSION=1.2.3 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 ```
 
 If you don't trust this project, please don't pipe into bash, and instead download the file,
@@ -119,7 +119,7 @@ Available configurations with defaults include
 # From erlang.bits
 ERLANG_VERSION=18.2-1
 
-ELIXIR_VERSION=1.2.0
+ELIXIR_VERSION=1.2.3
 ```
 To install, run
 
@@ -334,7 +334,7 @@ Node JS (using nodejs.bits) and then installs Phoenix. Available configurations 
 ERLANG_VERSION=18.2-1
 
 # From elixir.bits
-ELIXIR_VERSION=1.2.0
+ELIXIR_VERSION=1.2.3
 
 # From gitconfig.bits
 EMAIL=you@example.com
@@ -349,7 +349,7 @@ PGADMIN_VERSION=3
 # From ruby.bits (through sass.bits)
 RUBY_VERSION=2.2.3
 
-PHOENIX_VERSION=1.0.3
+PHOENIX_VERSION=1.1.3
 NODE_VERSION=5.3.0
 ```
 To install, run
@@ -383,7 +383,7 @@ Available configurations with defaults include
 ERLANG_VERSION=18.2-1
 
 # From elixir.bits
-ELIXIR_VERSION=1.2.0
+ELIXIR_VERSION=1.2.3
 
 # From gitconfig.bits
 EMAIL=you@example.com
@@ -396,7 +396,7 @@ POSTGRES_VERSION=9.4
 PGADMIN_VERSION=3
 
 # From phoenix.bits
-PHOENIX_VERSION=1.0.3
+PHOENIX_VERSION=1.1.3
 NODE_VERSION=5.3.0
 
 SRC_DIR=/src
@@ -425,7 +425,7 @@ TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/docu
 
 
 ```bash
-ELIXIR_VERSION=1.2.2
+ELIXIR_VERSION=1.2.3
 PHOENIX_VERSION=1.1.3
 NAME=elixir${ELIXIR_VERSION//./}phoenix${PHOENIX_VERSION//./}
 LOGFILE=/tmp/$NAME.log
