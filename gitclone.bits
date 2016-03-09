@@ -24,11 +24,6 @@ bits install-if knownhosts
 
 REPO_DIR=${INSTALL_DIR}/${NAME}
 
-if [[ "`which git 2> /dev/null`" == "" ]]; then
-  echo "Installing git"
-  apt-get install -y git-core
-fi
-
 if [[ "`git config --global user.email`" == "" ]]; then
   echo "Configuraitng default user $USER_EMAIL ($USER_NAME)"
   git config --global user.email "$USER_EMAIL"
