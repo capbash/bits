@@ -23,6 +23,7 @@ set_env()
 
 [ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
 
+bits install-if git # force to get a newer version of git
 bits install-if elixir # for the core elixir language, which includes erlang
 bits install-if postgres # for database
 bits install-if sass # for SASS
@@ -30,6 +31,7 @@ bits install-if nodejs # for asset compilation
 bits install-if phantomjs # for testing with hound
 bits install-if letsencrypt # for generating SSL certs
 bits install-if imagemagick # for image processing
+
 source $HOME/.bash_aliases
 
 apt-get -f -y install
