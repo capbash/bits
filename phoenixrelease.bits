@@ -1,5 +1,9 @@
 #!/bin/bash
 
+## TODO:
+## brunch build --production && \
+##  MIX_ENV=prod mix do phoenix.digest, compile, ecto.create, ecto.migrate, release
+
 #-----------
 # VARIABLES
 #-----------
@@ -12,7 +16,8 @@ PHOENIX_PATH=${PHOENIX_PATH-"/src/samplephoenix"}
 
 source $HOME/.bash_aliases
 
-(cd $PHOENIX_PATH && \
+(MIX_ENV=prod && \
+ cd $PHOENIX_PATH && \
  git pull && \
  source ./bin/env && \
  mix deps.get && \

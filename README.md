@@ -427,7 +427,8 @@ TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/docu
 ```bash
 ELIXIR_VERSION=1.2.3
 PHOENIX_VERSION=1.1.3
-NAME=elixir${ELIXIR_VERSION//./}phoenix${PHOENIX_VERSION//./}
+POSTGRES_VERSION=9.5
+NAME=elixir${ELIXIR_VERSION//./}phoenix${PHOENIX_VERSION//./}postgres${POSTGRES_VERSION//./}
 LOGFILE=/tmp/$NAME.log
 SIZE=512mb
 SLEEP=60

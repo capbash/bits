@@ -6,7 +6,8 @@
 
 ELIXIR_VERSION=${ELIXIR_VERSION-1.2.3}
 PHOENIX_VERSION=${PHOENIX_VERSION-1.1.3}
-NAME=${NAME-elixir${ELIXIR_VERSION//./}phoenix${PHOENIX_VERSION//./}}
+POSTGRES_VERSION=${POSTGRES_VERSION-9.5}
+NAME=${NAME-elixir${ELIXIR_VERSION//./}phoenix${PHOENIX_VERSION//./}postgres${POSTGRES_VERSION//./}}
 LOGFILE=${LOGFILE-/tmp/$NAME.log}
 SIZE=${SIZE-512mb}
 SLEEP=${SLEEP-60}
@@ -62,7 +63,7 @@ echo "Removing HostKey check for $IP"
 ssh -o "StrictHostKeyChecking no" root@$IP "uname -a"
 
 dio ssh $ID "bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)"
-dio ssh $ID "ELIXIR_VERSION=$ELIXIR_VERSION PHOENIX_VERSION=$PHOENIX_VERSION bits install-if phoenix"
+dio ssh $ID "ELIXIR_VERSION=$ELIXIR_VERSION PHOENIX_VERSION=$PHOENIX_VERSION POSTGRES_VERSION=$POSTGRES_VERSION bits install-if phoenix"
 dio ssh $ID "bits install-if gitprompt"
 ID=$ID NAME=$NAME DELETE=$DELETE bits install snapshotdio
 
