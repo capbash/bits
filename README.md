@@ -476,6 +476,7 @@ Available configurations with defaults include
 
 ```bash
 RUBY_VERSION=2.2.3
+RUBY_MODE=bin  # or source
 ```
 To install, run
 
