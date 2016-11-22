@@ -4,6 +4,7 @@
 # VARIABLES
 #-----------
 
+ERLANG_VERSION=${ERLANG_VERSION-18.2-1}
 ELIXIR_VERSION=${ELIXIR_VERSION-1.2.3}
 
 #-----------
@@ -23,7 +24,7 @@ set_env()
 
 [ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
 
-bits install-if erlang
+ERLANG_VERSION=${ERLANG_VERSION} bits install-if erlang
 
 locale-gen en_US.UTF-8
 set_env ELIXIR_VERSION $ELIXIR_VERSION
