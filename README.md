@@ -279,9 +279,10 @@ Installs [MySQL](https://www.mysql.com/). Available configurations with defaults
 
 ```bash
 MYSQL_VERSION=5.5.47
+UBUNTU_VERSION=16.04
 ```
 
-Available versions include
+Available MYSQL versions include
 
 * 5.5.47
 * 5.6.28

@@ -4,11 +4,11 @@
 # VARIABLES
 #-----------
 # Known versions
-#   5.5.47
+#   5.5.49
 #   5.6.28
-#   5.7.10
 
-MYSQL_VERSION=${MYSQL_VERSION-5.5.47}
+MYSQL_VERSION=${MYSQL_VERSION-5.6.28}
+MYSQL_USER=${MYSQL_USER-mysql}
 
 #-----------
 # HELPERS
@@ -27,12 +27,29 @@ set_env()
 
 MYSQLMM_VERSION=$(echo "$MYSQL_VERSION" | sed "s/^\(.*\)\..*$/\1/")
 
+apt-get update
+apt-get install -y libaio1
+
 (mkdir -p /opt/mysql && \
   cd /opt/mysql && \
-  wget http://dev.mysql.com/get/Downloads/MySQL-${MYSQLMM_VERSION}/mysql-${MYSQL_VERSION}-debian6.0-x86_64.deb
+  wget https://dev.mysql.com/get/Downloads/MySQL-${MYSQLMM_VERSION}/mysql-${MYSQL_VERSION}-debian6.0-x86_64.deb
   dpkg -i mysql-${MYSQL_VERSION}-debian6.0-x86_64.deb)
 
 set_env PATH "/opt/mysql/server-${MYSQLMM_VERSION}/bin:\$PATH"
 source $HOME/.bash_aliases
+
+groupadd $MYSQL_USER
+useradd -r -g $MYSQL_USER -s /bin/false $MYSQL_USER
+
+(cd /opt/mysql/server-${MYSQLMM_VERSION} && \
+  mkdir -p mysql-files && \
+  chmod 750 mysql-files && \
+  chown -R $MYSQL_USER:$MYSQL_USER . && \
+  scripts/mysql_install_db --user=$MYSQL_USER && \
+  chown -R root . && \
+  chown -R $MYSQL_USER data mysql-files && \
+  cp support-files/mysql.server /etc/init.d/mysql)
+
+
 
 touch /opt/mysql.bits
