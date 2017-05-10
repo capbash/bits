@@ -4,11 +4,14 @@
 # VARIABLES
 #-----------
 # Known versions
-#   5.5.49
+#   5.5.51
 #   5.6.28
 
 MYSQL_VERSION=${MYSQL_VERSION-5.6.28}
 MYSQL_USER=${MYSQL_USER-mysql}
+MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD-nicetry}
+MYSQL_UPDATERC=${MYSQL_UPDATERC-true}
+
 
 #-----------
 # HELPERS
@@ -30,26 +33,30 @@ MYSQLMM_VERSION=$(echo "$MYSQL_VERSION" | sed "s/^\(.*\)\..*$/\1/")
 apt-get update
 apt-get install -y libaio1
 
+groupadd $MYSQL_USER && \
+  useradd -g $MYSQL_USER $MYSQL_USER
+
 (mkdir -p /opt/mysql && \
   cd /opt/mysql && \
-  wget https://dev.mysql.com/get/Downloads/MySQL-${MYSQLMM_VERSION}/mysql-${MYSQL_VERSION}-debian6.0-x86_64.deb
-  dpkg -i mysql-${MYSQL_VERSION}-debian6.0-x86_64.deb)
+  wget https://dev.mysql.com/get/Downloads/MySQL-${MYSQLMM_VERSION}/mysql-${MYSQL_VERSION}-linux2.6-x86_64.tar.gz && \
+  tar -xvf mysql-${MYSQL_VERSION}-linux2.6-x86_64.tar.gz &&
+  mv mysql-${MYSQL_VERSION}-linux2.6-x86_64 /usr/local/mysql)
 
-set_env PATH "/opt/mysql/server-${MYSQLMM_VERSION}/bin:\$PATH"
+set_env PATH "/usr/local/mysql/bin:\$PATH"
 source $HOME/.bash_aliases
 
-groupadd $MYSQL_USER
-useradd -r -g $MYSQL_USER -s /bin/false $MYSQL_USER
-
-(cd /opt/mysql/server-${MYSQLMM_VERSION} && \
-  mkdir -p mysql-files && \
-  chmod 750 mysql-files && \
-  chown -R $MYSQL_USER:$MYSQL_USER . && \
+(cd /usr/local/mysql && \
+  chown -R $MYSQL_USER:$MYSQL_USER * && \
   scripts/mysql_install_db --user=$MYSQL_USER && \
   chown -R root . && \
-  chown -R $MYSQL_USER data mysql-files && \
-  cp support-files/mysql.server /etc/init.d/mysql)
+  chown -R mysql data && \
+  cp support-files/my-medium.cnf /etc/my.cnf && \
+  bin/mysqld_safe --user=$MYSQL_USER & \
+  cp support-files/mysql.server /etc/init.d/mysql.server && \
+  bin/mysqladmin -u root password "${MYSQL_ROOT_PASSWORD}")
 
-
+if [[ "$MYSQL_UPDATERC" == "true" ]]; then
+  update-rc.d -f mysql.server defaults
+fi
 
 touch /opt/mysql.bits
