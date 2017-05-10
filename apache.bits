@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+APACHE_VERSION=${APACHE_VERSION-2.4.25}
+APACHE_UPDATERC${APACHE_UPDATERC-true}
+
+#-----------
+# INSTALLER
+#-----------
+
+(mkdir -p /opt/apache && \
+ cd /opt/apache && \
+ apt-get update && \
+ apt-get install -y g++ make build-essential libc6 libpcre3 libpcre3-dev libssl1.0.0 libssl-dev zlib1g zlib1g-dev lsb-base libapr1-dev libaprutil1-dev && \
+ curl http://apache.mirror.vexxhost.com//httpd/httpd-${APACHE_VERSION}.tar.gz | tar xz && \
+ cd httpd-${APACHE_VERSION} && \
+ ./configure --with-ssl && \
+ make && \
+ make install)
+
+if [[ "$APACHE_UPDATERC" == "true" ]]; then
+  update-rc.d -f apache2 defaults
+fi
+
+touch /opt/apache.bits

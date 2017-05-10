@@ -72,6 +72,29 @@ inspect it and run it directly.
 
 # Available Bits #
 
+## apache.bits
+
+Install [Apache 2](https://httpd.apache.org/). Available configurations with defaults include
+
+```bash
+APACHE_VERSION=2.4.25
+APACHE_UPDATERC=true
+```
+
+To install, run
+
+```bash
+bits install apache
+```
+
+If APACHE_UPDATERC is set to true, it will register itself with update-rc to automatically start when booting up the system.
+
+Once installed, you can see the availbale options by running
+
+```
+sudo service apache
+```
+
 ## chromedriver.bits ##
 
 Installs [Chrome Driver](https://sites.google.com/a/chromium.org/chromedriver/) on your system.
