@@ -293,6 +293,23 @@ To install, run
 bits install mysql
 ```
 
+## php.bits ##
+
+Installs [PHP](http://php.net/). Available configurations with defaults include
+
+```bash
+PHP_VERSION=5.6
+```
+
+Available PHP versions include
+
+* 5.6
+
+To install, run
+```
+bits install php
+```
+
 ## pip.bits ##
 
 Installs Pip.
