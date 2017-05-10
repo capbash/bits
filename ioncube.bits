@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+PHP_LIB_DATE=${PHP_LIB_DATE-20131226}
+PHP_LIB_DIR=${PHP_LIB_DIR-/usr/lib/php/${PHP_LIB_DATE}}
+PHP_VERSION=${PHP_VERSION-5.6}
+CONFD_DIR=${CONFD_DIR-/etc/php/${PHP_VERSION}/apache2/conf.d}
+
+#-----------
+# INSTALLER
+#-----------
+
+(mkdir -p /opt/ioncube && \
+ cd /opt/ioncube && \
+ apt-get update && \
+ apt-get install -y g++ make build-essential && \
+ curl http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xz && \
+ cp ioncube/ioncube_loader_lin_${PHP_VERSION}.so ${PHP_LIB_DIR})
+
+printf "%b" "zend_extension = \"${PHP_LIB_DIR}/ioncube_loader_lin_${PHP_VERSION}.so\"" > ${CONFD_DIR}/00-ioncube.ini
+
+
+

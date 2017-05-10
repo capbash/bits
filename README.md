@@ -233,6 +233,26 @@ To install, run
 bits install gitprompt
 ```
 
+## ioncube.bits ##
+
+Configure a [ION Cube](http://www.ioncube.com/) on
+your server.
+
+Available configurations with defaults include
+
+```bash
+PHP_LIB_DATE=20131226
+PHP_LIB_DIR=/usr/lib/php/${PHP_LIB_DATE}
+PHP_VERSION=5.6
+CONFD_DIR=/etc/php/${PHP_VERSION}/apache2/conf.d
+```
+
+To install, run
+
+```bash
+bits install ioncube
+```
+
 ## jumpcloud.bits ##
 
 Configure a [JumpCloud](https://jumpcloud.com/) daemon on
