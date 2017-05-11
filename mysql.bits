@@ -10,8 +10,6 @@
 MYSQL_VERSION=${MYSQL_VERSION-5.6.28}
 MYSQL_USER=${MYSQL_USER-mysql}
 MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD-nicetry}
-MYSQL_UPDATERC=${MYSQL_UPDATERC-true}
-
 
 #-----------
 # HELPERS
@@ -51,12 +49,9 @@ source $HOME/.bash_aliases
   chown -R root . && \
   chown -R mysql data && \
   cp support-files/my-medium.cnf /etc/my.cnf && \
-  bin/mysqld_safe --user=$MYSQL_USER & \
   cp support-files/mysql.server /etc/init.d/mysql.server && \
+  update-rc.d -f mysql.server defaults && \
+  /etc/init.d/mysql.server start && \
   bin/mysqladmin -u root password "${MYSQL_ROOT_PASSWORD}")
-
-if [[ "$MYSQL_UPDATERC" == "true" ]]; then
-  update-rc.d -f mysql.server defaults
-fi
 
 touch /opt/mysql.bits
