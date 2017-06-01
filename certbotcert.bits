@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+KEYSIZE=${KEYSIZE-4096}
+EMAIL=${EMAIL}
+DOMAINS=${DOMAINS}
+WEBROOT=${WEBROOT}
+INI=${INI-/etc/letsencrypt/letsencrypt.ini}
+
+#-----------
+# INSTALLER
+#-----------
+
+source bits install-if certbot
+
+mkdir -p "$(dirname "$INI")"
+
+printf "%b" "
+rsa-key-size = $KEYSIZE
+email = $EMAIL
+domains = $DOMAINS
+text = True
+authenticator = webroot
+preferred-challenges = http-01
+webroot-path = $WEBROOT
+
+" > ${INI}
+
+echo "A" | certbot certonly  --config $INI
