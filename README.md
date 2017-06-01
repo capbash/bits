@@ -95,6 +95,16 @@ Once installed, you can see the availbale options by running
 sudo service apache
 ```
 
+## certbot.bits
+
+[Certbox](https://certbot.eff.org/) is a replacement to [Let's Encyrpt](https://letsencrypt.org/) script.
+
+Installs . To install, run
+
+```bash
+bits install certbot
+```
+
 ## chromedriver.bits ##
 
 Installs [Chrome Driver](https://sites.google.com/a/chromium.org/chromedriver/) on your system.
@@ -277,6 +287,8 @@ bits install knownhosts
 ```
 
 ## letsencrypt.bits
+
+This is obsolete, use [certbox](https://certbot.eff.org/) instead.
 
 Installs [Let's Encyrpt](https://letsencrypt.org/). To install, run
 

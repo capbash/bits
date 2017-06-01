@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+
+#-----------
+# INSTALLER
+#-----------
+
+(apt-get install -y software-properties-common && \
+ add-apt-repository -y ppa:certbot/certbot && \
+ apt-get update && \
+ apt-get install -y certbot)
+
+touch /opt/certbot.bits
