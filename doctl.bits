@@ -1,0 +1,59 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+CALCULATED_PLATFORM='linux'
+unamestr=$(uname)
+if [[ "$unamestr" == 'Darwin' ]]; then
+   CALCULATED_PLATFORM='mac'
+elif [[ "$unamestr" == 'Linux' ]]; then
+   CALCULATED_PLATFORM='linux'
+fi
+
+DOCTL_VERSION=${DOCTL_VERSION-1.6.1} # https://github.com/digitalocean/doctl/releases
+PLATFORM=${PLATFORM-$CALCULATED_PLATFORM}
+DOCTL_BIN=${DOCTL_BIN-/opt/doctl/${DOCTL_VERSION}/bin}
+
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
+
+#-----------
+# INSTALLER
+#-----------
+
+BASE_URL=https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/
+script_filename=
+
+if [[ $PLATFORM == 'linux' ]]; then
+  (mkdir -p $DOCTL_BIN &&
+   cd $DOCTL_BIN && \
+   curl -L ${BASE_URL}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz  | tar xz && \
+   set_env PATH "${DOCTL_BIN}:\$PATH" && \
+   chmod 755 ${DOCTL_BIN}/doctl)
+elif [[ $PLATFORM == 'mac' ]]; then
+  (mkdir -p $DOCTL_BIN &&
+   cd $DOCTL_BIN && \
+   curl -L ${BASE_URL}/doctl-${DOCTL_VERSION}-darwin-10.6-amd64.tar.gz | tar xz && \
+   chmod 755 ${DOCTL_BIN}/doctl)
+elif [[ $PLATFORM == 'brew' ]]; then
+  brew install doctl
+elif [[ $PLATFORM == 'snap' ]]; then
+  snap install doctl
+else
+  echo "Unknown PLATFORM ${PLATFORM}, cannot install."
+  exit 1
+fi
+
+touch /opt/doctl.bits
+

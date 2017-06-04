@@ -143,6 +143,22 @@ To install, run
 bits install devboxdio
 ```
 
+## doctl.bits ##
+
+Installs [Doctl](https://github.com/digitalocean/doctl) is a command line interface to [Digital Ocean API](https://developers.digitalocean.com/documentation/v2/)
+
+```bash
+DOCTL_VERSION=1.6.1
+PLATFORM=linux
+DOCTL_BIN=/opt/doctl/1.6.1/bin
+```
+
+To install, run
+
+```bash
+bits install doctl
+```
+
 ## elixir.bits ##
 
 Installs [Elixir](http://elixir-lang.org), which also needs [Erlang](http://www.erlang.org/), on your system.
