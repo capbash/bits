@@ -166,7 +166,7 @@ Available configurations with defaults include
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=19.2-1
+ERLANG_VERSION=19.3-1
 
 ELIXIR_VERSION=1.5.1
 ```
@@ -182,7 +182,7 @@ Installs [Erlang](http://www.erlang.org/) on your system.
 Available configurations with defaults include
 
 ```bash
-ERLANG_VERSION=19.2-1
+ERLANG_VERSION=19.3-1
 ```
 To install, run
 
@@ -420,7 +420,7 @@ Node JS (using nodejs.bits) and then installs Phoenix. Available configurations 
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=19.2-1
+ERLANG_VERSION=19.3-1
 
 # From elixir.bits
 ELIXIR_VERSION=1.5.1
@@ -469,7 +469,7 @@ Available configurations with defaults include
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=19.2-1
+ERLANG_VERSION=19.3-1
 
 # From elixir.bits
 ELIXIR_VERSION=1.5.1
