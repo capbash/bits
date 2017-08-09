@@ -5,7 +5,7 @@
 #-----------
 
 ERLANG_VERSION=${ERLANG_VERSION-19.2-1}
-ELIXIR_VERSION=${ELIXIR_VERSION-1.4.1}
+ELIXIR_VERSION=${ELIXIR_VERSION-1.5.1}
 PHOENIX_VERSION=${PHOENIX_VERSION-1.2.1}
 POSTGRES_VERSION=${POSTGRES_VERSION-9.6}
 
@@ -32,7 +32,7 @@ POSTGRES_VERSION=${POSTGRES_VERSION} bits install-if postgres # for database
 bits install-if sass # for SASS
 bits install-if nodejs # for asset compilation
 bits install-if phantomjs # for testing with hound
-bits install-if letsencrypt # for generating SSL certs
+bits install-if certbot # for generating SSL certs
 bits install-if imagemagick # for image processing
 
 source $HOME/.bash_aliases

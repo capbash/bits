@@ -215,7 +215,7 @@ For example,
 
 If the bit has environment variable, simply pass them along for the ride
 
-  ${LIGHT_GREEN}ELIXIR_VERSION=1.4.1 bits install elixir${NC}
+  ${LIGHT_GREEN}ELIXIR_VERSION=1.5.1 bits install elixir${NC}
 
 "
 }
@@ -233,7 +233,7 @@ For example,
 
 If the bit has environment variable, simply pass them along for the ride
 
-  ${LIGHT_GREEN}ELIXIR_VERSION=1.4.1 bits install-if elixir${NC}
+  ${LIGHT_GREEN}ELIXIR_VERSION=1.5.1 bits install-if elixir${NC}
 
 "
 }
