@@ -34,11 +34,9 @@ bits install-if nodejs # for asset compilation
 bits install-if phantomjs # for testing with hound
 bits install-if certbot # for generating SSL certs
 bits install-if imagemagick # for image processing
+bits install inotify # for watching file changes
 
 source $HOME/.bash_aliases
-
-apt-get -f -y install
-apt-get install -y inotify-tools
 
 mix local.hex --force
 mix local.rebar --force

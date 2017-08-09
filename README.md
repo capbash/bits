@@ -259,6 +259,17 @@ To install, run
 bits install gitprompt
 ```
 
+## inotify.bits ##
+
+Configure a [inotify-tools](https://github.com/rvoicilas/inotify-tools/wiki) on
+your server.
+
+To install, run
+
+```bash
+bits install inotify
+```
+
 ## ioncube.bits ##
 
 Configure a [ION Cube](http://www.ioncube.com/) on

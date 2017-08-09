@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#-----------
+# INSTALLER
+#-----------
+
+[ "`which inotifywait 2> /dev/null`" == "" ] && \
+  apt-get -f -y install && \
+    apt-get install -y inotify-tools
