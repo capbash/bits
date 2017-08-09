@@ -4,6 +4,8 @@
 # INSTALLER
 #-----------
 
-[ "`which inotifywait 2> /dev/null`" == "" ] && \
+[ "`which inotifywait`" == "" ] && \
   apt-get -f -y install && \
     apt-get install -y inotify-tools
+
+touch /opt/inotify.bits
