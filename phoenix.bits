@@ -25,9 +25,8 @@ bits install-if imagemagick # for image processing
 bits install inotify # for watching file changes
 source $HOME/.bash_aliases
 
-# TODO: Remove mix local.hex / mix local.rebar as it was throwing an exception, still needed?
-# mix local.hex --force
-# mix local.rebar --force
+mix local.hex --force
+mix local.rebar --force
 mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phx_new-$PHOENIX_VERSION.ez
 
 touch /opt/phoenix.bits
