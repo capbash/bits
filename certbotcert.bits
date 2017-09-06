@@ -29,4 +29,4 @@ webroot-path = $WEBROOT
 
 " > ${INI}
 
-echo "A" | certbot certonly  --config $INI
+certbot certonly --non-interactive --config $INI
