@@ -621,3 +621,17 @@ ID=1234 NAME=myapp bits install sass
 ```
 
 If you have `DELETE=true`, then it will delete the snapshot when it's done.
+
+## swap.bits
+
+Install swap space on you server
+Available configurations with defaults include
+
+```bash
+SWAP_SIZE=4G
+```
+To install, run
+
+```bash
+bits install swap
+```
