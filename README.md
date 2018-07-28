@@ -47,7 +47,7 @@ version of elixir, then you would run
 
 
 ```bash
-ELIXIR_VERSION=1.5.1 bits install elixir
+ELIXIR_VERSION=1.7.1 bits install elixir
 ```
 
 # How to Install A Bit Directly #
@@ -64,7 +64,7 @@ bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits
 To override defaults, set it as an environment variable
 
 ```bash
-ELIXIR_VERSION=1.5.1 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
+ELIXIR_VERSION=1.7.1 bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/elixir.bits)
 ```
 
 If you don't trust this project, please don't pipe into bash, and instead download the file,
@@ -166,9 +166,9 @@ Available configurations with defaults include
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=19.3-1
+ERLANG_VERSION=20.0-1
 
-ELIXIR_VERSION=1.5.1
+ELIXIR_VERSION=1.7.1
 ```
 To install, run
 
@@ -182,7 +182,7 @@ Installs [Erlang](http://www.erlang.org/) on your system.
 Available configurations with defaults include
 
 ```bash
-ERLANG_VERSION=19.3-1
+ERLANG_VERSION=20.0-1
 ```
 To install, run
 
@@ -431,10 +431,10 @@ Node JS (using nodejs.bits) and then installs Phoenix. Available configurations 
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=19.3-1
+ERLANG_VERSION=20.0-1
 
 # From elixir.bits
-ELIXIR_VERSION=1.5.1
+ELIXIR_VERSION=1.7.1
 
 # From gitconfig.bits
 EMAIL=you@example.com
@@ -480,10 +480,10 @@ Available configurations with defaults include
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=19.3-1
+ERLANG_VERSION=20.0-1
 
 # From elixir.bits
-ELIXIR_VERSION=1.5.1
+ELIXIR_VERSION=1.7.1
 
 # From gitconfig.bits
 EMAIL=you@example.com
@@ -525,8 +525,8 @@ TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/docu
 
 
 ```bash
-ERLANG_VERSION=19.1-3
-ELIXIR_VERSION=1.5.1
+ERLANG_VERSION=20.0-1
+ELIXIR_VERSION=1.7.1
 PHOENIX_VERSION=1.2.1
 POSTGRES_VERSION=9.6
 NAME=elixir${ELIXIR_VERSION//[.|-]/}phoenix${PHOENIX_VERSION//[.|-]/}postgres${POSTGRES_VERSION//[.|-]/}
