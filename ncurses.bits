@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#-----------
+# INSTALLER
+#-----------
+
+source $HOME/.bash_aliases
+apt-get install -y libncurses-dev
+touch /opt/ncurses.bits

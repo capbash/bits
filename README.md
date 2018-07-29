@@ -375,6 +375,14 @@ To install, run
 bits install mysql
 ```
 
+## ncurses.bits ##
+
+Installs Ncurses required for Erlang. To install, run
+
+```bash
+bits install ncurses
+```
+
 ## php.bits ##
 
 Installs [PHP](http://php.net/). Available configurations with defaults include

@@ -21,13 +21,39 @@ set_env()
 # INSTALLER
 #-----------
 
+[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+
 locale-gen en_US.UTF-8
 set_env ERLANG_VERSION $ERLANG_VERSION
 source $HOME/.bash_aliases
 
-apt-get update
-apt-get install -y wget git build-essential libsctp1
-wget http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_general/esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
-dpkg --force-depends -i esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
+case "$ERLANG_VERSION" in
+
+OTP*)
+  bits install ncurses
+
+  ## Compile from source, using the TAG number from the repo
+  (mkdir -p /opt/erlang && \
+   cd /opt/erlang && \
+   rm -rf "./$ERLANG_VERSION" && \
+   git clone https://github.com/erlang/otp.git "$ERLANG_VERSION" && \
+   cd "$ERLANG_VERSION" && \
+   git checkout "$ERLANG_VERSION" && \
+   ./otp_build autoconf && \
+   ./configure && \
+   make && \
+   make install && \
+   set_env PATH "/opt/erlang/$ERLANG_VERSION/bin:\$PATH")
+  ;;
+
+*)
+  ## Download the appropriate package based on VERSION number
+  apt-get update
+  apt-get install -y wget git build-essential libsctp1
+  wget http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_general/esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
+  dpkg --force-depends -i esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
+
+  ;;
+esac
 
 touch /opt/erlang.bits
