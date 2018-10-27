@@ -8,6 +8,7 @@ ERLANG_VERSION=${ERLANG_VERSION-21.0-1}
 ELIXIR_VERSION=${ELIXIR_VERSION-1.7.1}
 PHOENIX_VERSION=${PHOENIX_VERSION-1.2.1}
 POSTGRES_VERSION=${POSTGRES_VERSION-9.6}
+LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-xenial}
 NAME=${NAME-erlang${ERLANG_VERSION//[.|-]/}elixir${ELIXIR_VERSION//[.|-]/}phoenix${PHOENIX_VERSION//[.|-]/}postgres${POSTGRES_VERSION//[.|-]/}}
 LOGFILE=${LOGFILE-/tmp/$NAME.log}
 SIZE=${SIZE-512mb}
@@ -65,7 +66,7 @@ echo "Removing HostKey check for $IP"
 ssh -o "StrictHostKeyChecking no" root@$IP "uname -a"
 
 dio ssh $ID "bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)"
-dio ssh $ID "ERLANG_VERSION=$ERLANG_VERSION ELIXIR_VERSION=$ELIXIR_VERSION PHOENIX_VERSION=$PHOENIX_VERSION POSTGRES_VERSION=$POSTGRES_VERSION bits install-if phoenix"
+dio ssh $ID "ERLANG_VERSION=$ERLANG_VERSION ELIXIR_VERSION=$ELIXIR_VERSION PHOENIX_VERSION=$PHOENIX_VERSION POSTGRES_VERSION=$POSTGRES_VERSION LINUX_DISTRIBUTION=$LINUX_DISTRIBUTION bits install-if phoenix"
 dio ssh $ID "bits install-if gitprompt"
 ID=$ID NAME=$NAME DELETE=$DELETE bits install snapshotdio
 

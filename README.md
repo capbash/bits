@@ -453,6 +453,7 @@ PUSH=simple
 # From postgres.bits
 POSTGRES_VERSION=9.6
 PGADMIN_VERSION=3
+LINUX_DISTRIBUTION=xenial
 
 # From ruby.bits (through sass.bits)
 RUBY_VERSION=2.2.3
@@ -502,6 +503,7 @@ PUSH=simple
 # From postgres.bits
 POSTGRES_VERSION=9.6
 PGADMIN_VERSION=3
+LINUX_DISTRIBUTION=xenial
 
 # From phoenix.bits
 PHOENIX_VERSION=1.2.1
@@ -537,6 +539,7 @@ ERLANG_VERSION=20.0-1
 ELIXIR_VERSION=1.7.1
 PHOENIX_VERSION=1.2.1
 POSTGRES_VERSION=9.6
+LINUX_DISTRIBUTION=xenial
 NAME=elixir${ELIXIR_VERSION//[.|-]/}phoenix${PHOENIX_VERSION//[.|-]/}postgres${POSTGRES_VERSION//[.|-]/}
 LOGFILE=/tmp/$NAME.log
 SIZE=512mb
@@ -551,12 +554,28 @@ bits install phoenixdio
 ## postgres.bits ##
 
 Installs Postgres.
+
+The distributions and versions are available at:
+
+* [APT Distributions](http://apt.postgresql.org/pub/repos/apt/dists/)
+* [APT Wiki](https://wiki.postgresql.org/wiki/Apt)
+
+These scripts are definitely biased towards Ubuntu,
+so you will probably want to stay within this family
+of distibutions:
+
+* Ubuntu 14.04 `trusty`
+* Ubuntu 16.04 `xenial`
+* Ubuntu 18.04 `bionic`
+
 Available configurations with defaults include
 
 ```bash
 POSTGRES_VERSION=9.6
 PGADMIN_VERSION=3
+LINUX_DISTRIBUTION=xenial
 ```
+
 To install, run
 
 ```bash

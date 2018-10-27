@@ -8,6 +8,7 @@ ERLANG_VERSION=${ERLANG_VERSION-21.0-1}
 ELIXIR_VERSION=${ELIXIR_VERSION-1.7.1}
 PHOENIX_VERSION=${PHOENIX_VERSION-1.3.0}
 POSTGRES_VERSION=${POSTGRES_VERSION-9.6}
+LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-xenial}
 
 #-----------
 # INSTALLER
@@ -15,8 +16,12 @@ POSTGRES_VERSION=${POSTGRES_VERSION-9.6}
 
 bits install-if git # force to get a newer version of git
 bits install-if gitprompt # pretty prompt
-ERLANG_VERSION=${ERLANG_VERSION} ELIXIR_VERSION=${ELIXIR_VERSION} bits install-if elixir # for the core elixir language, which includes erlang
-POSTGRES_VERSION=${POSTGRES_VERSION} bits install-if postgres # for database
+ERLANG_VERSION=${ERLANG_VERSION} \
+  ELIXIR_VERSION=${ELIXIR_VERSION} \
+  bits install-if elixir # for the core elixir language, which includes erlang
+POSTGRES_VERSION=${POSTGRES_VERSION} \
+  LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION} \
+  bits install-if postgres # for database
 bits install-if sass # for SASS
 bits install-if nodejs # for asset compilation
 bits install-if phantomjs # for testing with hound
