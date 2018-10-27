@@ -5,6 +5,7 @@
 #-----------
 
 ERLANG_VERSION=${ERLANG_VERSION-21.0-1}
+LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-xenial}
 
 #-----------
 # HELPERS
@@ -50,8 +51,8 @@ OTP*)
   ## Download the appropriate package based on VERSION number
   apt-get update
   apt-get install -y wget git build-essential libsctp1
-  wget http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_general/esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
-  dpkg --force-depends -i esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
+  wget https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_${ERLANG_VERSION}~ubuntu~${LINUX_DISTRIBUTION}_amd64.deb
+  dpkg --force-depends -i esl-erlang_$ERLANG_VERSION~ubuntu~${LINUX_DISTRIBUTION}_amd64.deb
 
   ;;
 esac

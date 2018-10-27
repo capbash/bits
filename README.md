@@ -162,13 +162,23 @@ bits install doctl
 ## elixir.bits ##
 
 Installs [Elixir](http://elixir-lang.org), which also needs [Erlang](http://www.erlang.org/), on your system.
+
+These scripts are definitely biased towards Ubuntu,
+so you will probably want to stay within this family
+of distibutions:
+
+* Ubuntu 14.04 `trusty`
+* Ubuntu 16.04 `xenial`
+* Ubuntu 18.04 `bionic`
+
 Available configurations with defaults include
 
 ```bash
 # From erlang.bits
 ERLANG_VERSION=20.0-1
-
 ELIXIR_VERSION=1.7.1
+LINUX_DISTRIBUTION=xenial
+
 ```
 To install, run
 
@@ -183,6 +193,8 @@ Available configurations with defaults include
 
 ```bash
 ERLANG_VERSION=20.0-1
+LINUX_DISTRIBUTION=xenial
+
 ```
 To install, run
 
@@ -453,6 +465,8 @@ PUSH=simple
 # From postgres.bits
 POSTGRES_VERSION=9.6
 PGADMIN_VERSION=3
+
+# From erlang.bits and postgres.bits
 LINUX_DISTRIBUTION=xenial
 
 # From ruby.bits (through sass.bits)

@@ -17,6 +17,7 @@ LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-xenial}
 bits install-if git # force to get a newer version of git
 bits install-if gitprompt # pretty prompt
 ERLANG_VERSION=${ERLANG_VERSION} \
+  LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION} \
   ELIXIR_VERSION=${ELIXIR_VERSION} \
   bits install-if elixir # for the core elixir language, which includes erlang
 POSTGRES_VERSION=${POSTGRES_VERSION} \
