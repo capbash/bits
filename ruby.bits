@@ -4,12 +4,40 @@
 # VARIABLES
 #-----------
 
-RUBY_VERSION=${RUBY_VERSION-2.2.3}
+RUBY_VERSION=${RUBY_VERSION-2.5.3}
 RUBY_MODE=${RUBY_MODE-bin}
+LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-xenial}
+
+#-----------
+# HELPERS
+#-----------
+
+set_env()
+{
+  KEY=$1
+  VAL=$2
+  echo "export $KEY=$VAL" >> $HOME/.bash_aliases
+}
 
 #-----------
 # INSTALLER
 #-----------
+
+case $LINUX_DISTRIBUTION in
+trusty)
+  LINUX_VERSION="14.04"
+  ;;
+xenial)
+  LINUX_VERSION="16.04"
+  ;;
+bionic)
+  LINUX_VERSION="18.04"
+  ;;
+*)
+  LINUX_VERSION="14.04"
+  ;;
+esac
+
 
 if [[ "$RUBY_MODE" == "source" ]]; then
 
@@ -34,9 +62,9 @@ else
    cd /opt/ruby && \
    apt-get update && \
    apt-get install -y wget g++ build-essential && \
-   wget http://rubies.travis-ci.org/ubuntu/14.04/x86_64/ruby-${RUBY_VERSION}.tar.bz2 && \
+   wget http://rubies.travis-ci.org/ubuntu/${LINUX_VERSION}/x86_64/ruby-${RUBY_VERSION}.tar.bz2 && \
    tar xfj ruby-${RUBY_VERSION}.tar.bz2)
-
-  set_env PATH "/root/ruby-${RUBY_VERSION}/bin:\$PATH"
-  source $HOME/.bash_aliases
 fi
+
+set_env PATH "/opt/ruby/ruby-${RUBY_VERSION}/bin:\$PATH"
+source $HOME/.bash_aliases

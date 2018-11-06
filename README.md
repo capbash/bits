@@ -614,11 +614,21 @@ bits install redis
 ## ruby.bits ##
 
 Installs Ruby.
+
+These scripts are definitely biased towards Ubuntu,
+so you will probably want to stay within this family
+of distibutions:
+
+* Ubuntu 14.04 `trusty`
+* Ubuntu 16.04 `xenial`
+* Ubuntu 18.04 `bionic` # (not supported yet)
+
 Available configurations with defaults include
 
 ```bash
-RUBY_VERSION=2.2.3
+RUBY_VERSION=2.5.3
 RUBY_MODE=bin  # or source
+LINUX_DISTRIBUTION=xenial
 ```
 To install, run
 
