@@ -473,7 +473,7 @@ LINUX_DISTRIBUTION=xenial
 RUBY_VERSION=2.2.3
 
 PHOENIX_VERSION=1.2.1
-NODE_VERSION=5.3.0
+NODE_VERSION=11.9.0
 ```
 To install, run
 
@@ -521,7 +521,7 @@ LINUX_DISTRIBUTION=xenial
 
 # From phoenix.bits
 PHOENIX_VERSION=1.2.1
-NODE_VERSION=5.3.0
+NODE_VERSION=11.9.0
 
 SRC_DIR=/src
 GIT_URL="git@bitbucket.org:capbash/samplephoenix.git"
