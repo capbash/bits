@@ -358,6 +358,12 @@ NGINX_UPDATERC=true
 
 If NGINX_UPDATERC is set to true, it will register itself with update-rc to automatically start when booting up the system.
 
+To install, run
+
+```bash
+bits install nginx
+```
+
 Once installed, you can see the availbale options by running
 
 ```
@@ -366,6 +372,18 @@ sudo service nginx
 
 A huge thank you to [Jason Giedymin](https://github.com/JasonGiedymin/nginx-init-ubuntu) for the init.d script.
 
+
+## nodejs.bits ##
+
+Install [NodeJS](https://nodejs.org/en/). Available configurations with defaults include
+
+```
+NODE_VERSION=11.9.0
+```
+
+```bash
+bits install nodejs
+```
 
 ## mysql.bits ##
 
