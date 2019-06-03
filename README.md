@@ -347,6 +347,30 @@ To install, run
 bits install libsass
 ```
 
+## marketplace-partners.bits ##
+
+Based on [Digital Oceans Marketplace Docs](https://github.com/digitalocean/marketplace-partners/blob/master/marketplace_docs/build-an-image.md), this will install two helper scripts.
+
+To install, run
+
+```bash
+bits install marketplace-partners
+```
+
+After being installed, two helper scripts are available
+
+First, the clean-up your image
+
+```bash
+/usr/local/bin/marketplace-cleanup
+```
+
+Second, to verify your image
+
+```bash
+/usr/local/bin/marketplace-validation
+```
+
 ## nginx.bits
 
 Install [Nginx](http://nginx.org/). Available configurations with defaults include
