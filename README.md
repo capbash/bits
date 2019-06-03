@@ -385,6 +385,14 @@ NODE_VERSION=11.9.0
 bits install nodejs
 ```
 
+## openssh-server.bits ##
+
+Install OpenSSH server.
+
+```
+bits install openssh-server
+```
+
 ## mysql.bits ##
 
 Installs [MySQL](https://www.mysql.com/). Available configurations with defaults include

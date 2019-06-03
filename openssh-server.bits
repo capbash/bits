@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+#-----------
+# INSTALLER
+#-----------
+
+apt-get install -y openssh-server
+
+touch /opt/openssh-server.bits
