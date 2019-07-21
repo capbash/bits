@@ -3,12 +3,14 @@
 #-----------
 # VARIABLES
 #-----------
-# Known versions
-#   5.5.51
-#   5.6.28
+# Known versions from https://dev.mysql.com/downloads/mysql/
+#   5.5.62
+#   5.6.42
+#   5.7.24
 
-MYSQL_VERSION=${MYSQL_VERSION-5.6.28}
+MYSQL_VERSION=${MYSQL_VERSION-5.7.24}
 MYSQL_USER=${MYSQL_USER-mysql}
+MYSQL_DATADIR=${MYSQL_DATADIR-/usr/local/mysql/data}
 MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD-nicetry}
 
 #-----------
@@ -28,30 +30,33 @@ set_env()
 
 MYSQLMM_VERSION=$(echo "$MYSQL_VERSION" | sed "s/^\(.*\)\..*$/\1/")
 
-apt-get update
-apt-get install -y libaio1
 
-groupadd $MYSQL_USER && \
-  useradd -g $MYSQL_USER $MYSQL_USER
+TEMP_PASSWORD=$(echo "2018-11-06T14:39:37.001166Z 1 [Note] A temporary password is generated for root@localhost: 6umRpyd2st=Q" | sed "s/^.*localhost:\s*\(.*\)$/\1/") ; echo ""; echo $TEMP_PASSWORD
 
-(mkdir -p /opt/mysql && \
-  cd /opt/mysql && \
-  wget https://dev.mysql.com/get/Downloads/MySQL-${MYSQLMM_VERSION}/mysql-${MYSQL_VERSION}-linux2.6-x86_64.tar.gz && \
-  tar -xvf mysql-${MYSQL_VERSION}-linux2.6-x86_64.tar.gz &&
-  mv mysql-${MYSQL_VERSION}-linux2.6-x86_64 /usr/local/mysql)
 
-set_env PATH "/usr/local/mysql/bin:\$PATH"
+# apt-get update
+# apt-get install -y libaio1
+
+# groupadd $MYSQL_USER && \
+#   useradd -g $MYSQL_USER $MYSQL_USER
+
+# (mkdir -p /opt/mysql && \
+#   cd /opt/mysql && \
+#   wget https://dev.mysql.com/get/Downloads/MySQL-${MYSQLMM_VERSION}/mysql-${MYSQL_VERSION}-linux-glibc2.12-x86_64.tar.gz && \
+#   tar -xvf mysql-${MYSQL_VERSION}-linux-glibc2.12-x86_64.tar.gz && \
+#   ln -s /opt/mysql/mysql-${MYSQL_VERSION}-linux-glibc2.12-x86_64 /usr/local/mysql)
+
+# set_env PATH "/opt/mysql/mysql-${MYSQL_VERSION}-linux-glibc2.12-x86_64/bin:\$PATH"
 source $HOME/.bash_aliases
 
 (cd /usr/local/mysql && \
   chown -R $MYSQL_USER:$MYSQL_USER * && \
-  scripts/mysql_install_db --user=$MYSQL_USER && \
+  mysqld --initialize --user=$MYSQL_USER --datadir=$MYSQL_DATADIR && \
   chown -R root . && \
-  chown -R mysql data && \
-  cp support-files/my-medium.cnf /etc/my.cnf && \
+  chown -R mysql $MYSQL_DATADIR && \
   cp support-files/mysql.server /etc/init.d/mysql.server && \
   update-rc.d -f mysql.server defaults && \
   /etc/init.d/mysql.server start && \
-  bin/mysqladmin -u root password "${MYSQL_ROOT_PASSWORD}")
+  mysqladmin -u root password "${MYSQL_ROOT_PASSWORD}")
 
 touch /opt/mysql.bits

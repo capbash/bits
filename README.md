@@ -422,15 +422,17 @@ bits install openssh-server
 Installs [MySQL](https://www.mysql.com/). Available configurations with defaults include
 
 ```bash
-MYSQL_VERSION=5.5.47
-UBUNTU_VERSION=16.04
+MYSQL_VERSION=5.7.24
+MYSQL_USER=mysql
+MYSQL_DATADIR=/usr/local/mysql/data
+MYSQL_ROOT_PASSWORD=nicetry
 ```
 
-Available MYSQL versions include
+Available MYSQL versions include (and will change frequently)
 
-* 5.5.47
-* 5.6.28
-* 5.7.10
+* 5.5.62
+* 5.6.42
+* 5.7.24
 
 To install, run
 ```
