@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#-----------
+# VARIABLES
+#-----------
+
+SWAP_SIZE=${SWAP_SIZE-4G}
+
+#-----------
+# INSTALLER
+#-----------
+
+# Thanks to
+# https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/
+touch /opt/swap.start && \
+  sudo apt install ufw && \
+  rm -f /opt/swap.start && \
+  touch /opt/swap.bits

@@ -738,3 +738,12 @@ To install, run
 ```bash
 bits install swap
 ```
+
+## ufw.bits
+
+The uncomplicated firewall should be installed, but if it's not
+you can install it using
+
+```bash
+bits install ufw
+```
