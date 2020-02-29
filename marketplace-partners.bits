@@ -12,9 +12,10 @@ MARKETPLACE_PARTNERS_BRANCH=${MARKETPLACE_PARTNERS_BRANCH-master}
 
 [ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
 
-bits install-if openssh-server
-
-rm -rf /etc/src/marketplace-partners && \
+touch /opt/marketplace-partners.start && \
+  bits install-if openssh-server && \
+  bits install-if ufw && \
+  rm -rf /etc/src/marketplace-partners && \
   rm -f /usr/local/bin/marketplace_* && \
   mkdir -p /etc/src && \
   (cd /etc/src && \
@@ -23,4 +24,6 @@ rm -rf /etc/src/marketplace-partners && \
     git checkout $MARKETPLACE_PARTNERS_BRANCH) && \
   ln -s /etc/src/marketplace-partners/scripts/cleanup.sh /usr/local/bin/marketplace_cleanup && \
   ln -s /etc/src/marketplace-partners/scripts/img_check.sh /usr/local/bin/marketplace_img_checks && \
-  chmod 755 /usr/local/bin/marketplace_*
+  chmod 755 /usr/local/bin/marketplace_* && \
+  rm -f /opt/marketplace-partners.start && \
+  touch /opt/marketplace-partners.bits
