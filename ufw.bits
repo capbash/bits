@@ -13,6 +13,10 @@ SWAP_SIZE=${SWAP_SIZE-4G}
 # Thanks to
 # https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/
 touch /opt/swap.start && \
-  sudo apt install ufw && \
+  apt install ufw && \
+  ufw allow ssh && \
+  ufw allow http && \
+  ufw allow https && \
+  ufw -f enable && \
   rm -f /opt/swap.start && \
   touch /opt/swap.bits
