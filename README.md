@@ -373,14 +373,7 @@ Second, to verify your image
 
 ## nginx.bits
 
-Install [Nginx](http://nginx.org/). Available configurations with defaults include
-
-```
-NGINX_VERSION=1.8.0
-NGINX_UPDATERC=true
-```
-
-If NGINX_UPDATERC is set to true, it will register itself with update-rc to automatically start when booting up the system.
+Install [Nginx](http://nginx.org/).
 
 To install, run
 
@@ -391,10 +384,11 @@ bits install nginx
 Once installed, you can see the availbale options by running
 
 ```
-sudo service nginx
+systemctl status nginx
 ```
 
-A huge thank you to [Jason Giedymin](https://github.com/JasonGiedymin/nginx-init-ubuntu) for the init.d script.
+A huge thank you to [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
+for the instalation documentation.
 
 
 ## nodejs.bits ##
