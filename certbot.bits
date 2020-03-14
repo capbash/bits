@@ -12,6 +12,6 @@
 (apt-get install -y software-properties-common && \
  add-apt-repository -y ppa:certbot/certbot && \
  apt-get update && \
- apt-get install -y certbot)
+ apt-get install -y certbot python-certbot-nginx)
 
 touch /opt/certbot.bits
