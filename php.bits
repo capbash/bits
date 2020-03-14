@@ -5,7 +5,8 @@
 #-----------
 # Known versions
 #   5.6
-#   5.6.28
+#   7.3
+#   7.4
 
 PHP_VERSION=${PHP_VERSION-5.6}
 
@@ -13,14 +14,68 @@ PHP_VERSION=${PHP_VERSION-5.6}
 # HELPERS
 #-----------
 
+function php56() {
+  (echo "installing php${PHP_VERSION} ..." && \
+    touch /opt/php56.start && \
+    add-apt-repository -y ppa:ondrej/php && \
+    apt-get update && \
+    apt-get install -y php${PHP_VERSION} && \
+    apt-get install -y php${PHP_VERSION}-cli php${PHP_VERSION}-mbstring php${PHP_VERSION}-mcrypt php${PHP_VERSION}-mysql php${PHP_VERSION}-xml && \
+    rm /opt/php56.start && \
+    touch /opt/php56.bits && \
+    echo ".... done installing php${PHP_VERSION}")
+}
+
+function php7x() {
+  (echo "installing php${PHP_VERSION} ..." && \
+    touch /opt/php${PHP_VERSION}.1.start && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository -y ppa:ondrej/php && \
+    apt-get update && \
+    touch /opt/php${PHP_VERSION}.2.start && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y php${PHP_VERSION} php${PHP_VERSION}-dev php${PHP_VERSION}-memcache \
+      php${PHP_VERSION}-sqlite3 php${PHP_VERSION}-xml php-apcu php-ssh2 \
+      php${PHP_VERSION}-mbstring php${PHP_VERSION}-curl php${PHP_VERSION}-cli php${PHP_VERSION}-sqlite php-fpdf \
+      php${PHP_VERSION}-mysql php${PHP_VERSION}-gd php${PHP_VERSION}-intl php${PHP_VERSION}-xsl \
+      php${PHP_VERSION}-zip php${PHP_VERSION}-apcu \
+      php${PHP_VERSION}-soap php${PHP_VERSION}-fpm php-pear \
+      php${PHP_VERSION}-common php${PHP_VERSION}-xmlrpc php${PHP_VERSION}-imagick php${PHP_VERSION}-imap \
+      php${PHP_VERSION}-opcache && \
+    touch /opt/php${PHP_VERSION}.3.start && \
+    ([[ `which apache2ctl` != "" ]] && \
+      touch /opt/php.apache2ctl.start && \
+      apt-get install -y libapache2-mod-php${PHP_VERSION} && \
+      a2enmod proxy_fcgi setenvif && \
+      a2enconf php${PHP_VERSION}-fpm && \
+      rm -f touch /opt/php.apache2ctl.start && \
+      touch /opt/php.apache2ctl.bits) ; \
+    ([[ `which nginx` != "" ]] && \
+      touch /opt/php.nginx.start && \
+      ufw allow 'Nginx HTTP' && \
+      sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php/${PHP_VERSION}/fpm/php.ini && \
+      systemctl restart php${PHP_VERSION}-fpm && \
+      rm -f touch /opt/php.nginx.start && \
+      touch /opt/php.nginx.bits) ; \
+    touch /opt/php${PHP_VERSION}.4.start && \
+    (echo "installing update-alternatives" ; \
+      update-alternatives --set php /usr/bin/php${PHP_VERSION} ; \
+      update-alternatives --set php-config /usr/bin/php-config${PHP_VERSION} ; \
+      update-alternatives --set phpize /usr/bin/phpize${PHP_VERSION} ; \
+      echo ".... done installing update-alternatives") && \
+    rm -f /opt/php${PHP_VERSION}*.start && \
+    touch /opt/php${PHP_VERSION}.bits && \
+    echo ".... done installing php${PHP_VERSION}")
+}
 
 #-----------
 # INSTALLER
 #-----------
 
-add-apt-repository -y ppa:ondrej/php
-apt-get update
-apt-get install -y php${PHP_VERSION}
-apt-get install -y php${PHP_VERSION}-cli php${PHP_VERSION}-mbstring php${PHP_VERSION}-mcrypt php${PHP_VERSION}-mysql php${PHP_VERSION}-xml
-
-touch /opt/php.bits
+case ${PHP_VERSION} in
+  "5.6")
+    php56
+    ;;
+  *)
+    php7x
+    ;;
+esac
