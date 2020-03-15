@@ -35,7 +35,7 @@ source $HOME/.bash_aliases
 
 mix local.hex --force
 mix local.rebar --force
-mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phx_new-$PHOENIX_VERSION.ez
+mix archive.install --force hex phx_new $PHOENIX_VERSION
 
 rm -f /opt/phoenix.start
 touch /opt/phoenix.bits

@@ -635,7 +635,6 @@ Available configurations with defaults include
 ```bash
 POSTGRES_VERSION=9.6
 PGADMIN_VERSION=3
-LINUX_DISTRIBUTION=xenial
 ```
 
 To install, run
@@ -676,7 +675,6 @@ Available configurations with defaults include
 ```bash
 RUBY_VERSION=2.5.3
 RUBY_MODE=bin  # or source
-LINUX_DISTRIBUTION=xenial
 ```
 To install, run
 
