@@ -119,6 +119,16 @@ To install, run
 bits install chromedriver
 ```
 
+## composer.bits
+
+[Composer](https://getcomposer.org/) is a dependency manager for PHP.
+
+To install, run
+
+```bash
+bits install composer
+```
+
 ## devboxdio.bits ##
 
 Creates a [Digital Ocean](https://www.digitalocean.com/) droplet that is ready for
