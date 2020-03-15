@@ -8,11 +8,13 @@ ERLANG_VERSION=${ERLANG_VERSION-21.3.8.6-1}
 ELIXIR_VERSION=${ELIXIR_VERSION-1.7.1}
 PHOENIX_VERSION=${PHOENIX_VERSION-1.3.0}
 POSTGRES_VERSION=${POSTGRES_VERSION-9.6}
-LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-xenial}
+LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-$(lsb_release -cs)}
 
 #-----------
 # INSTALLER
 #-----------
+
+touch /opt/phoenix.start
 
 bits install-if git # force to get a newer version of git
 bits install-if gitprompt # pretty prompt
@@ -35,4 +37,5 @@ mix local.hex --force
 mix local.rebar --force
 mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phx_new-$PHOENIX_VERSION.ez
 
+rm -f /opt/phoenix.start
 touch /opt/phoenix.bits

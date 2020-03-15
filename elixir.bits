@@ -6,7 +6,7 @@
 
 ERLANG_VERSION=${ERLANG_VERSION-21.3.8.6-1}
 ELIXIR_VERSION=${ELIXIR_VERSION-1.7.1}
-LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-xenial}
+LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-$(lsb_release -cs)}
 
 #-----------
 # HELPERS
@@ -22,6 +22,8 @@ set_env()
 #-----------
 # INSTALLER
 #-----------
+
+touch /opt/elixir.start
 
 [ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
 
@@ -46,4 +48,5 @@ tar zxf v$ELIXIR_VERSION.tar.gz
 cd /opt/elixir/elixir-$ELIXIR_VERSION
 make install
 
+rm -f /opt/elixir.start
 touch /opt/elixir.bits
