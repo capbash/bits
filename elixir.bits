@@ -40,12 +40,13 @@ set_env PATH "/opt/elixir/elixir-$ELIXIR_VERSION/bin:node_modules/.bin:\$PATH"
 source $HOME/.bash_aliases
 
 bits install inotify # for watching file changes
-bits install-if swap # installs 4G of swap space
+SWAP_SIZE=8G bits install swap # installs 8G of swap space
 
 mkdir -p /opt/elixir && cd /opt/elixir
 wget https://github.com/elixir-lang/elixir/archive/v$ELIXIR_VERSION.tar.gz
 tar zxf v$ELIXIR_VERSION.tar.gz
 cd /opt/elixir/elixir-$ELIXIR_VERSION
+make clean
 make install
 
 rm -f /opt/elixir.start
