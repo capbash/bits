@@ -1,28 +1,18 @@
 #!/bin/bash
 
 #-----------
-# VARIABLES
-#-----------
-
-APACHE_VERSION=${APACHE_VERSION-2.4.25}
-APACHE_UPDATERC${APACHE_UPDATERC-true}
-
-#-----------
 # INSTALLER
 #-----------
 
-(mkdir -p /opt/apache && \
- cd /opt/apache && \
- apt-get update && \
- apt-get install -y g++ make build-essential libc6 libpcre3 libpcre3-dev libssl1.0.0 libssl-dev zlib1g zlib1g-dev lsb-base libapr1-dev libaprutil1-dev && \
- curl http://apache.mirror.vexxhost.com//httpd/httpd-${APACHE_VERSION}.tar.gz | tar xz && \
- cd httpd-${APACHE_VERSION} && \
- ./configure --with-ssl && \
- make && \
- make install)
-
-if [[ "$APACHE_UPDATERC" == "true" ]]; then
-  update-rc.d -f apache2 defaults
-fi
-
-touch /opt/apache.bits
+(echo "installing apache ..." && \
+  sudo apt-get -y update && \
+  sudo apt-get install -y software-properties-common && \
+  sudo apt-get -y update && \
+  sudo apt-get install -y apache2 && \
+  sudo mkdir -p /var/data/sessions && \
+  sudo chown -R ubuntu:www-data /var/data/sessions && \
+  sudo a2dissite 000-default && \
+  sudo a2enmod rewrite && \
+  sudo a2enmod headers
+  sudo touch /opt/apache.bits && \
+  echo ".... done installing apache")
