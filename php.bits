@@ -42,7 +42,7 @@ function php7x() {
       php${PHP_VERSION}-common php${PHP_VERSION}-xmlrpc php${PHP_VERSION}-imagick php${PHP_VERSION}-imap \
       php${PHP_VERSION}-opcache && \
     touch /opt/php${PHP_VERSION}.3.start && \
-    ([[ `which apache2ctl` != "" ]] && \
+    ([[ `which apache2` != "" ]] && \
       touch /opt/php.apache2ctl.start && \
       apt-get install -y libapache2-mod-php${PHP_VERSION} && \
       a2enmod proxy_fcgi setenvif && \
