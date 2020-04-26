@@ -41,6 +41,23 @@ fi
  cd redis-${REDIS_VERSION}
  make)
 
+printf "%b" "
+[Unit]
+Description=redis-server
+
+[Service]
+WorkingDirectory=/opt/redis/redis-${REDIS_VERSION}
+ExecStart=/opt/redis/redis-${REDIS_VERSION}/src/redis-server
+TimeoutSec=600
+StandardOutput=file:/var/log/redis-${REDIS_VERSION}.log
+StandardError=file:/var/log/redis-${REDIS_VERSION}.log
+User=root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+" > /etc/systemd/system/redis-server.service
+
 set_env PATH "/opt/redis/redis-${REDIS_VERSION}/src:\$PATH"
 source $HOME/.bash_aliases
 
