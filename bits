@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-VERSION=v0.5.14
+VERSION=v0.6.0
 DEFAULT_BITS_URL="https://raw.githubusercontent.com/capbash/bits/master"
-TOUCH_DIR="/opt"
+DEFAULT_BITS_MODE=curl
+DEFAULT_TOUCH_DIR="/opt"
 
 #--------------------
 # LOGGING SECTION
@@ -292,7 +293,16 @@ account; this includes
   # At the moment we only support URLs
   # File paths are coming
   # ${LIGHT_GREEN}BITS_URL=${DEFAULT_BITS_URL}${NC}
+  # ${LIGHT_GREEN}BITS_MODE=${DEFAULT_BITS_MODE}${NC}
+  # ${LIGHT_GREEN}TOUCH_DIR=${DEFAULT_TOUCH_DIR}${NC}
 
+The ${LIGHT_GREEN}BITS_URL${NC} is where to find your bit 
+scripts and can be either an actual URL (e.g. ${LIGHT_GREY}https:/bits.local${NC}) 
+or if ${LIGHT_GREEN}BITS_MODE=file${NC} then a local path to 
+bits (e.g ${LIGHT_GREY}/opt/bits${NC}).
+
+The ${LIGHT_GREEN}TOUCH_DIR${NC} is where we drop .bits 
+files to show which operations have been run.
 "
 }
 
@@ -328,6 +338,7 @@ printf "%b" "# bits $VERSION
 # At the moment we only support URLs
 # File paths are coming
 # BITS_URL=${DEFAULT_BITS_URL}
+# BITS_MODE=${DEFAULT_BITS_MODE}
 " > ".bits"
   fi
 }
@@ -341,10 +352,26 @@ do_install()
     local LOGFILE=${LOGFILE-/tmp/bits.$BIT.log}
     info "Installing $BIT (tail -f $LOGFILE) ..."
     BITS_URL=${BITS_URL-$DEFAULT_BITS_URL}
-    debug "  ... Running bash <(curl -s $BITS_URL/$BIT.bits)"
-    ANSWER=$(CURLOPT_FRESH_CONNECT=true bash <(curl -s $BITS_URL/$BIT.bits) &> $LOGFILE)
+    BITS_MODE=${BITS_MODE-$DEFAULT_BITS_MODE}
+    TOUCH_DIR=${TOUCH_DIR-$DEFAULT_TOUCH_DIR}
+    touch "${TOUCH_DIR}/$BIT.start"
+
+    case "${BITS_MODE}" in
+      "curl")
+        debug "  ... Running bash <(curl -s $BITS_URL/$BIT.bits)"
+        ANSWER=$(CURLOPT_FRESH_CONNECT=true bash <(curl -s $BITS_URL/$BIT.bits) &> $LOGFILE)
+        ;;
+
+      "file")
+        debug "  ... Running bash <(cat $BITS_URL/$BIT.bits)"
+        ANSWER=$(bash $BITS_URL/$BIT.bits &> $LOGFILE)
+        ;;
+    esac
+
     handle_error $? "$ANSWER" "Unable to install $BIT"
+    mv "${TOUCH_DIR}/$BIT.start" "${TOUCH_DIR}/$BIT.bits"
     info "DONE, Installing $BITS"
+
   fi
 }
 
@@ -363,13 +390,10 @@ do_install_if()
 do_installed_qmark()
 {
   BIT=$1
-
-  if [[ "$BIT" == "" ]]; then
-    (cd $TOUCH_DIR && ls *.bits | tr " " "\n" | sed 's/.bits//')
-  elif [[ -e /opt/$BIT.bits ]]; then
+  TOUCH_DIR=${TOUCH_DIR-$DEFAULT_TOUCH_DIR}
+  if [[ -e ${TOUCH_DIR}/$BIT.bits ]]; then
     echo "$BIT"
   fi
-
 }
 
 do_replace_self()
