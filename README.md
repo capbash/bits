@@ -95,11 +95,21 @@ Once installed, you can see the availbale options by running
 sudo service apache
 ```
 
+## brew.bits
+
+[Brew](https://brew.sh) is the Missing Package Manager for macOS (or Linux).
+
+To install, run
+
+```bash
+bits install brew
+```
+
 ## certbot.bits
 
 [Certbox](https://certbot.eff.org/) is a replacement to [Let's Encyrpt](https://letsencrypt.org/) script.
 
-Installs . To install, run
+To install, run
 
 ```bash
 bits install certbot

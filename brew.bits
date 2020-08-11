@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#-----------
+# INSTALLER
+#-----------
+
+(echo "installing brew ..." && \
+  OUTPUT=$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)
+  echo ".... done installing brew")
