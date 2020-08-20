@@ -5,8 +5,7 @@
 #-----------
 
 ERLANG_VERSION=${ERLANG_VERSION-21.3.8.6-1}
-ELIXIR_VERSION=${ELIXIR_VERSION-1.7.1}
-LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-$(lsb_release -cs)}
+ELIXIR_VERSION=${ELIXIR_VERSION-1.10.4}
 
 #-----------
 # HELPERS
@@ -23,31 +22,30 @@ set_env()
 # INSTALLER
 #-----------
 
-touch /opt/elixir.start
+if [ "$(which brew)" == "" ]; then
+  ERLANG_VERSION=${ERLANG_VERSION} LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION} bits install-if erlang
+  INSTALL_DIR=${INSTALL_DIR-/opt}
 
-[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+  locale-gen en_US.UTF-8
+  set_env ELIXIR_VERSION $ELIXIR_VERSION
+  source $HOME/.bash_aliases
 
-ERLANG_VERSION=${ERLANG_VERSION} LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION} bits install-if erlang
+  set_env LC_ALL en_US.UTF-8
+  set_env LANG en_US.UTF-8
+  set_env LANGUAGE en_US.UTF-8
+  set_env PATH "${INSTALL_DIR}/elixir/elixir-$ELIXIR_VERSION/bin:node_modules/.bin:\$PATH"
+  source $HOME/.bash_aliases
 
-locale-gen en_US.UTF-8
-set_env ELIXIR_VERSION $ELIXIR_VERSION
-source $HOME/.bash_aliases
+  bits install inotify # for watching file changes
+  SWAP_SIZE=8G bits install swap # installs 8G of swap space
 
-set_env LC_ALL en_US.UTF-8
-set_env LANG en_US.UTF-8
-set_env LANGUAGE en_US.UTF-8
-set_env PATH "/opt/elixir/elixir-$ELIXIR_VERSION/bin:node_modules/.bin:\$PATH"
-source $HOME/.bash_aliases
-
-bits install inotify # for watching file changes
-SWAP_SIZE=8G bits install swap # installs 8G of swap space
-
-mkdir -p /opt/elixir && cd /opt/elixir
-wget https://github.com/elixir-lang/elixir/archive/v$ELIXIR_VERSION.tar.gz
-tar zxf v$ELIXIR_VERSION.tar.gz
-cd /opt/elixir/elixir-$ELIXIR_VERSION
-make clean
-make install
-
-rm -f /opt/elixir.start
-touch /opt/elixir.bits
+  mkdir -p ${INSTALL_DIR}/elixir && cd ${INSTALL_DIR}/elixir
+  wget https://github.com/elixir-lang/elixir/archive/v$ELIXIR_VERSION.tar.gz
+  tar zxf v$ELIXIR_VERSION.tar.gz
+  cd ${INSTALL_DIR}/elixir/elixir-$ELIXIR_VERSION
+  make clean
+  make install
+else
+  bits install-if erlang
+  brew install elixir
+fi
