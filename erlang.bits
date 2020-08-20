@@ -5,7 +5,6 @@
 #-----------
 
 ERLANG_VERSION=${ERLANG_VERSION-21.3.8.6-1}
-LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-$(lsb_release -cs)}
 
 #-----------
 # HELPERS
@@ -22,38 +21,18 @@ set_env()
 # INSTALLER
 #-----------
 
-[ "`which bits 2> /dev/null`" == "" ] && bash <(curl -s https://raw.githubusercontent.com/capbash/bits/master/bits-installer)
+if [ "$(which brew)" == "" ]; then
+  LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION-$(lsb_release -cs)}
+  locale-gen en_US.UTF-8
+  set_env ERLANG_VERSION $ERLANG_VERSION
+  source $HOME/.bash_aliases
 
-locale-gen en_US.UTF-8
-set_env ERLANG_VERSION $ERLANG_VERSION
-source $HOME/.bash_aliases
-
-case "$ERLANG_VERSION" in
-
-OTP*)
-  bits install ncurses
-
-  ## Compile from source, using the TAG number from the repo
-  (mkdir -p /opt/erlang && \
-   cd /opt/erlang && \
-   rm -rf "./$ERLANG_VERSION" && \
-   git clone https://github.com/erlang/otp.git "$ERLANG_VERSION" && \
-   cd "$ERLANG_VERSION" && \
-   git checkout "$ERLANG_VERSION" && \
-   ./otp_build autoconf && \
-   ./configure && \
-   make && \
-   make install && \
-   set_env PATH "/opt/erlang/$ERLANG_VERSION/bin:\$PATH")
-  ;;
-
-*)
-  ## Download the appropriate package based on VERSION number
   apt-get update
   apt-get install -y wget git build-essential libsctp1
   wget https://packages.erlang-solutions.com/erlang/debian/pool/esl-erlang_${ERLANG_VERSION}~ubuntu~${LINUX_DISTRIBUTION}_amd64.deb
   dpkg --force-depends -i esl-erlang_${ERLANG_VERSION}~ubuntu~${LINUX_DISTRIBUTION}_amd64.deb
-  ;;
-esac
+else
+  brew install erlang
+fi
 
-touch /opt/erlang.bits
+
