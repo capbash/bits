@@ -34,5 +34,3 @@ if [ "$(which brew)" == "" ]; then
 else
   brew install erlang
 fi
-
-
