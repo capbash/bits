@@ -11,9 +11,6 @@
 
 bits install-if ufw
 
-(touch /opt/nginx.start && \
-  apt update && \
+(apt update && \
   apt install -y nginx && \
-  ufw allow 'Nginx Full' && \
-  rm -f /opt/nginx.start && \
-  touch /opt/nginx.bits)
+  ufw allow 'Nginx Full')
