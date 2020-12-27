@@ -610,7 +610,7 @@ TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/docu
 ```bash
 ERLANG_VERSION=23.2-1
 ELIXIR_VERSION=1.11.2
-PHOENIX_VERSION=1.2.1
+PHOENIX_VERSION=1.5.7
 POSTGRES_VERSION=9.6
 NAME=elixir${ELIXIR_VERSION//[.|-]/}phoenix${PHOENIX_VERSION//[.|-]/}postgres${POSTGRES_VERSION//[.|-]/}
 LOGFILE=/tmp/$NAME.log
