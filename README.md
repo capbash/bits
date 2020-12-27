@@ -195,7 +195,7 @@ Available configurations with defaults include
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=20.0-1
+ERLANG_VERSION=23.2-1
 ELIXIR_VERSION=1.7.1
 
 ```
@@ -211,7 +211,7 @@ Installs [Erlang](http://www.erlang.org/) on your system.
 Available configurations with defaults include
 
 ```bash
-ERLANG_VERSION=20.0-1
+ERLANG_VERSION=23.2-1
 ```
 To install, run
 
@@ -514,7 +514,7 @@ Node JS (using nodejs.bits) and then installs Phoenix. Available configurations 
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=20.0-1
+ERLANG_VERSION=23.2-1
 
 # From elixir.bits
 ELIXIR_VERSION=1.7.1
@@ -563,7 +563,7 @@ Available configurations with defaults include
 
 ```bash
 # From erlang.bits
-ERLANG_VERSION=20.0-1
+ERLANG_VERSION=23.2-1
 
 # From elixir.bits
 ELIXIR_VERSION=1.7.1
@@ -608,7 +608,7 @@ TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/docu
 
 
 ```bash
-ERLANG_VERSION=20.0-1
+ERLANG_VERSION=23.2-1
 ELIXIR_VERSION=1.7.1
 PHOENIX_VERSION=1.2.1
 POSTGRES_VERSION=9.6
