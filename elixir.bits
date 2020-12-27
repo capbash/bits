@@ -47,6 +47,6 @@ if [ "$(which brew)" == "" ]; then
   make clean
   make install
 else
-  bits install-if erlang
+  ERLANG_VERSION=$ERLANG_VERSION LINUX_DISTRIBUTION=${LINUX_DISTRIBUTION} bits install-if erlang
   brew install elixir
 fi
