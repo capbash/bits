@@ -374,9 +374,14 @@ do_install()
     esac
 
     handle_error $? "$ANSWER" "Unable to install $BIT"
-    mv "${TOUCH_DIR}/$BIT.start" "${TOUCH_DIR}/$BIT.bits"
-    info "DONE, Installing $BITS"
 
+    if [ -e "${TOUCH_DIR}/$BIT.start" ]; then
+      mv "${TOUCH_DIR}/$BIT.start" "${TOUCH_DIR}/$BIT.bits"
+    else
+      touch "${TOUCH_DIR}/$BIT.bits"
+    fi
+
+    info "DONE, Installing $BITS"
   fi
 }
 
