@@ -217,7 +217,7 @@ For example,
 
 If the bit has environment variable, simply pass them along for the ride
 
-  ${LIGHT_GREEN}ELIXIR_VERSION=1.7.1 bits install elixir${NC}
+  ${LIGHT_GREEN}ELIXIR_VERSION=1.11.2 bits install elixir${NC}
 
 "
 }
@@ -235,7 +235,7 @@ For example,
 
 If the bit has environment variable, simply pass them along for the ride
 
-  ${LIGHT_GREEN}ELIXIR_VERSION=1.7.1 bits install-if elixir${NC}
+  ${LIGHT_GREEN}ELIXIR_VERSION=1.11.2 bits install-if elixir${NC}
 
 "
 }
@@ -298,12 +298,12 @@ account; this includes
   # ${LIGHT_GREEN}TOUCH_DIR=${DEFAULT_TOUCH_DIR}${NC}
   # ${LIGHT_GREEN}INSTALL_DIR=${DEFAULT_INSTALL_DIR}${NC}
 
-The ${LIGHT_GREEN}BITS_URL${NC} is where to find your bit 
-scripts and can be either an actual URL (e.g. ${LIGHT_GREY}https:/bits.local${NC}) 
-or if ${LIGHT_GREEN}BITS_MODE=file${NC} then a local path to 
+The ${LIGHT_GREEN}BITS_URL${NC} is where to find your bit
+scripts and can be either an actual URL (e.g. ${LIGHT_GREY}https:/bits.local${NC})
+or if ${LIGHT_GREEN}BITS_MODE=file${NC} then a local path to
 bits (e.g ${LIGHT_GREY}/opt/bits${NC}).
 
-The ${LIGHT_GREEN}TOUCH_DIR${NC} is where we drop .bits 
+The ${LIGHT_GREEN}TOUCH_DIR${NC} is where we drop .bits
 files to show which operations have been run.
 "
 }
