@@ -526,7 +526,7 @@ EDITOR=vi
 PUSH=simple
 
 # From postgres.bits
-POSTGRES_VERSION=9.6
+POSTGRES_VERSION=11
 PGADMIN_VERSION=3
 
 # From ruby.bits (through sass.bits)
@@ -575,7 +575,7 @@ EDITOR=vi
 PUSH=simple
 
 # From postgres.bits
-POSTGRES_VERSION=9.6
+POSTGRES_VERSION=11
 PGADMIN_VERSION=3
 
 # From phoenix.bits
@@ -611,7 +611,7 @@ TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/docu
 ERLANG_VERSION=23.2-1
 ELIXIR_VERSION=1.11.2
 PHOENIX_VERSION=1.5.7
-POSTGRES_VERSION=9.6
+POSTGRES_VERSION=11
 NAME=elixir${ELIXIR_VERSION//[.|-]/}phoenix${PHOENIX_VERSION//[.|-]/}postgres${POSTGRES_VERSION//[.|-]/}
 LOGFILE=/tmp/$NAME.log
 SIZE=512mb
@@ -643,7 +643,7 @@ of distibutions:
 Available configurations with defaults include
 
 ```bash
-POSTGRES_VERSION=9.6
+POSTGRES_VERSION=11
 PGADMIN_VERSION=3
 ```
 
