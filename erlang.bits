@@ -1,4 +1,13 @@
-#!/bin/bash
+#!/bin/bash -e
+#
+# Take a look
+# https://www.erlang-solutions.com/downloads/
+#
+# then Look at the download URL, like
+# href="https://packages.erlang-solutions.com/erlang/debian/pool/esl-erlang_23.2.3-1~ubuntu~xenial_arm64.deb"
+#
+# The version number would be
+# 23.2.3-1
 
 #-----------
 # VARIABLES

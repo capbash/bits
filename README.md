@@ -532,7 +532,7 @@ PGADMIN_VERSION=3
 # From ruby.bits (through sass.bits)
 RUBY_VERSION=2.2.3
 
-PHOENIX_VERSION=1.5.7
+PHOENIX_VERSION=1.5.8
 NODE_VERSION=11.9.0
 ```
 To install, run
@@ -579,7 +579,7 @@ POSTGRES_VERSION=11
 PGADMIN_VERSION=3
 
 # From phoenix.bits
-PHOENIX_VERSION=1.5.7
+PHOENIX_VERSION=1.5.8
 NODE_VERSION=11.9.0
 
 SRC_DIR=/src
@@ -610,7 +610,7 @@ TOKEN to access the [Digital Ocean API](https://developers.digitalocean.com/docu
 ```bash
 ERLANG_VERSION=23.2-1
 ELIXIR_VERSION=1.11.4
-PHOENIX_VERSION=1.5.7
+PHOENIX_VERSION=1.5.8
 POSTGRES_VERSION=11
 NAME=elixir${ELIXIR_VERSION//[.|-]/}phoenix${PHOENIX_VERSION//[.|-]/}postgres${POSTGRES_VERSION//[.|-]/}
 LOGFILE=/tmp/$NAME.log
