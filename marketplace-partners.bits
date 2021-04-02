@@ -19,11 +19,12 @@ touch /opt/marketplace-partners.start && \
   rm -f /usr/local/bin/marketplace_* && \
   mkdir -p /etc/src && \
   (cd /etc/src && \
+    rm -rf marketplace-partners && \
     git clone https://github.com/digitalocean/marketplace-partners.git && \
     cd marketplace-partners && \
     git checkout $MARKETPLACE_PARTNERS_BRANCH) && \
-  ln -s /etc/src/marketplace-partners/scripts/cleanup.sh /usr/local/bin/marketplace_cleanup && \
-  ln -s /etc/src/marketplace-partners/scripts/img_check.sh /usr/local/bin/marketplace_img_checks && \
+  ln -s /etc/src/marketplace-partners/scripts/90-cleanup.sh /usr/local/bin/marketplace_cleanup && \
+  ln -s /etc/src/marketplace-partners/scripts/99-img-check.sh /usr/local/bin/marketplace_img_checks && \
   chmod 755 /usr/local/bin/marketplace_* && \
   rm -f /opt/marketplace-partners.start && \
   touch /opt/marketplace-partners.bits
